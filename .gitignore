@@ -1,0 +1,52 @@
+# WordPress
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-db/
+
+# Variables de entorno
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+my_fantasy_env/
+
+# Logs
+*.log
+ejecucion.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# FTP
+.ftpconfig
+sftp-config.json
+
+# Backups
+backups/
+*.sql
+*.zip
+*.tar.gz
+
+# Temporales
+tmp/
+temp/
+*.tmp
