@@ -8,7 +8,9 @@ wp-content/backup-db/
 # Variables de entorno
 .env
 *.env
-
+.env
+#Claude
+.claude/settings.local.json
 # Python
 __pycache__/
 *.py[cod]
