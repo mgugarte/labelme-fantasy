@@ -3,6 +3,7 @@ import requests
 import pymysql
 from datetime import datetime
 import os
+import math
 from dotenv import load_dotenv
 
 
@@ -20,7 +21,8 @@ conn = pymysql.connect(
     user=os.getenv('DB_USER'),
     password=os.getenv('DB_PASSWORD'),
     database=os.getenv('DB_NAME'),
-    charset="utf8mb4"
+    charset="utf8mb4",
+    cursorclass=pymysql.cursors.DictCursor
 )
 cursor = conn.cursor()
 
@@ -43,43 +45,51 @@ def get_team_statistics(team_id):
     
     return 0
 
+
 def get_player_injuries(player_id):
-    """Obtiene las lesiones futuras del jugador (fecha posterior a hoy)"""
+    """Obtiene las lesiones del jugador basándose en el fixture más reciente"""
     url = "https://v3.football.api-sports.io/injuries"
     headers = {"x-apisports-key": API_KEY}
     params = {"player": player_id, "season": SEASON}
-    
+
     r = requests.get(url, headers=headers, params=params)
     data = r.json()
-    
+
     response = data.get("response", [])
     if not response:
         return 0, None, None
-    
-    # Fecha actual (solo fecha, sin hora)
+
     today = datetime.now().date()
-    
-    # Buscar lesiones con fixture posterior a hoy
+
+    # Buscar el fixture MÁS RECIENTE de todas las lesiones
+    latest_injury = None
+    latest_fixture_date = None
+
     for injury in response:
         fixture = injury.get("fixture", {})
         fixture_date_str = fixture.get("date")
-        
+
         if fixture_date_str:
             try:
-                # Extraer solo los primeros 10 caracteres (YYYY-MM-DD)
+                # Extraer solo la fecha (YYYY-MM-DD)
                 fixture_date_only = fixture_date_str[:10]
-                # Convertir a objeto date
                 fixture_date = datetime.strptime(fixture_date_only, "%Y-%m-%d").date()
-                
-                # Si el fixture es posterior o igual a hoy
-                if fixture_date >= today:
-                    player_info = injury.get("player", {})
-                    injury_type = player_info.get("type")
-                    injury_reason = player_info.get("reason")
-                    return 1, injury_type, injury_reason
+
+                # Guardar si es el fixture más reciente encontrado hasta ahora
+                if latest_fixture_date is None or fixture_date > latest_fixture_date:
+                    latest_fixture_date = fixture_date
+                    latest_injury = injury
             except:
                 continue
-    
+
+    # Si el fixture más reciente es HOY o FUTURO → está de BAJA
+    if latest_injury and latest_fixture_date >= today:
+        player_info = latest_injury.get("player", {})
+        injury_type = player_info.get("type")
+        injury_reason = player_info.get("reason")
+        return 1, injury_type, injury_reason
+
+    # Si el fixture más reciente es PASADO → está disponible
     return 0, None, None
 
 def get_players_by_team(team_id):
@@ -106,6 +116,225 @@ def get_players_by_team(team_id):
         page += 1
 
     return all_players
+
+# === MAPEO DE POSICIONES ===
+POSICIONES_ES = {
+    'Goalkeeper': 'Portero',
+    'Defender': 'Defensa',
+    'Midfielder': 'Centrocampista',
+    'Attacker': 'Delantero'
+}
+
+# === TRADUCCIÓN DE TIPOS DE BAJA ===
+TIPOS_BAJA_ES = {
+    'Missing Fixture': 'Sin Convocatoria',
+    'Questionable': 'Duda',
+    'Suspended': 'Sancionado',
+    'Yellow Cards': 'Acumulación Tarjetas',
+    'Red Card': 'Tarjeta Roja',
+    'Injury': 'Lesionado',
+    "Coach's decision": 'Decisión Técnica',
+    'Coach Decision': 'Decisión Técnica',
+    'International Duty': 'Selección',
+    'Not Available': 'No Disponible'
+}
+
+# === TRADUCCIÓN DE RAZONES DE BAJA ===
+RAZONES_BAJA_ES = {
+    # Lesiones musculares
+    'Muscle Injury': 'Lesión Muscular',
+    'Thigh Injury': 'Lesión en el Muslo',
+    'Hamstring Injury': 'Lesión Isquiotibiales',
+    'Calf Injury': 'Lesión en Pantorrilla',
+    'Groin Injury': 'Lesión en la Ingle',
+
+    # Lesiones articulares
+    'Knee Injury': 'Lesión de Rodilla',
+    'Ankle Injury': 'Lesión de Tobillo',
+    'Hip Injury': 'Lesión de Cadera',
+    'Achilles Tendon Injury': 'Lesión Tendón de Aquiles',
+
+    # Otras lesiones
+    'Back Injury': 'Lesión de Espalda',
+    'Shoulder Injury': 'Lesión de Hombro',
+    'Foot Injury': 'Lesión en el Pie',
+    'Head Injury': 'Lesión en la Cabeza',
+    'Concussion': 'Conmoción',
+    'Injury': 'Lesión',
+    'Knock': 'Golpe',
+    'Broken nose': 'Nariz Rota',
+    'Broken ankle': 'Tobillo Roto',
+    'Jumpers knee': 'Rodilla de Saltador',
+
+    # Sanciones
+    'Suspended': 'Suspendido',
+    'Yellow Cards': 'Acumulación de Amarillas',
+    'Accumulation of Yellow Cards': 'Acumulación de Amarillas',
+    'Red Card': 'Tarjeta Roja',
+
+    # Otros motivos
+    "Coach's decision": 'Decisión del Entrenador',
+    'Coach Decision': 'Decisión del Entrenador',
+    'International Duty': 'Concentración con Selección',
+    'Illness': 'Enfermedad',
+    'Personal Reasons': 'Motivos Personales',
+    'Inactive': 'Inactivo',
+    'Rest': 'Descanso',
+    'Unknown': 'Desconocido'
+}
+
+def traducir_tipo_baja(tipo):
+    """Traduce el tipo de baja del inglés al español"""
+    if not tipo:
+        return None
+    return TIPOS_BAJA_ES.get(tipo, tipo)
+
+def traducir_razon_baja(razon):
+    """Traduce la razón de baja del inglés al español"""
+    if not razon:
+        return None
+    return RAZONES_BAJA_ES.get(razon, razon)
+
+# === CONFIGURACIÓN ALGORITMO RECOMENDACIÓN FANTASY ===
+PESOS_COMPONENTES = {
+    'tendencia_reciente': 0.40,
+    'consistencia': 0.25,
+    'calidad_rendimiento': 0.25,
+    'estado_fisico': 0.10
+}
+
+PESOS_PARTIDOS = [0.40, 0.25, 0.17, 0.11, 0.07]
+
+UMBRALES_POSICION = {
+    'Portero': {'excelente': 7.0, 'bueno': 6.5, 'aceptable': 6.0},
+    'Defensa': {'excelente': 7.0, 'bueno': 6.7, 'aceptable': 6.3},
+    'Centrocampista': {'excelente': 7.2, 'bueno': 6.8, 'aceptable': 6.5},
+    'Delantero': {'excelente': 7.5, 'bueno': 7.0, 'aceptable': 6.5}
+}
+
+def calcular_recomendacion_fantasy(player_id, cursor_obj):
+    """
+    Calcula la recomendación fantasy con algoritmo mejorado v2
+
+    Args:
+        player_id: ID del jugador
+        cursor_obj: Cursor de pymysql para consultas
+
+    Returns:
+        int: Recomendación 0-100%
+    """
+    # Obtener datos del jugador
+    cursor_obj.execute("""
+        SELECT baja, posicion, rating AS rating_total,
+               porcentaje_titularidades
+        FROM jugadores_laliga
+        WHERE id = %s AND season = %s
+    """, (player_id, SEASON))
+
+    jugador = cursor_obj.fetchone()
+
+    if not jugador:
+        return 0
+
+    # Si está de baja → 0%
+    if jugador['baja'] == 1:
+        return 0
+
+    # Obtener últimos 5 partidos
+    cursor_obj.execute("""
+        SELECT substitute, rating, minutes, fixture_date
+        FROM jugadores_fixtures_laliga
+        WHERE player_id = %s AND season = %s
+        ORDER BY fixture_date DESC
+        LIMIT 5
+    """, (player_id, SEASON))
+
+    ultimos_5 = cursor_obj.fetchall()
+
+    # Si no tiene partidos recientes, usar histórico como fallback
+    if len(ultimos_5) == 0:
+        return min(int(jugador['porcentaje_titularidades'] or 0), 50)
+
+    # COMPONENTE 1: TENDENCIA RECIENTE (40%)
+    tendencia_score = 0
+
+    for i, partido in enumerate(ultimos_5):
+        peso = PESOS_PARTIDOS[i]
+
+        if partido['substitute'] == 0 and partido['minutes'] > 0:
+            # Titular
+            minutos_score = min(partido['minutes'] / 90 * 100, 100)
+            tendencia_score += minutos_score * peso
+        elif partido['minutes'] > 0:
+            # Suplente que jugó
+            minutos_score = (partido['minutes'] / 90) * 60
+            tendencia_score += minutos_score * peso
+
+    # COMPONENTE 2: CONSISTENCIA (25%)
+    ratings_validos = [float(p['rating']) for p in ultimos_5 if p['rating'] and p['rating'] > 0]
+
+    if len(ratings_validos) >= 3:
+        media_rating = sum(ratings_validos) / len(ratings_validos)
+        varianza = sum((r - media_rating) ** 2 for r in ratings_validos) / len(ratings_validos)
+        desv_rating = math.sqrt(varianza)
+        consistencia_score = max(0, 100 - (desv_rating / 1.5) * 100)
+    else:
+        consistencia_score = 50
+
+    # COMPONENTE 3: CALIDAD RENDIMIENTO (25%)
+    posicion = jugador['posicion'] or 'Centrocampista'
+    umbrales = UMBRALES_POSICION.get(posicion, UMBRALES_POSICION['Centrocampista'])
+
+    if ratings_validos:
+        rating_promedio = sum(ratings_validos) / len(ratings_validos)
+
+        if rating_promedio >= umbrales['excelente']:
+            calidad_score = 100
+        elif rating_promedio >= umbrales['bueno']:
+            rango = umbrales['excelente'] - umbrales['bueno']
+            progreso = float(rating_promedio) - umbrales['bueno']
+            calidad_score = 75 + (progreso / rango) * 25
+        elif rating_promedio >= umbrales['aceptable']:
+            rango = umbrales['bueno'] - umbrales['aceptable']
+            progreso = float(rating_promedio) - umbrales['aceptable']
+            calidad_score = 50 + (progreso / rango) * 25
+        else:
+            calidad_score = max(0, (float(rating_promedio) / umbrales['aceptable']) * 50)
+    else:
+        calidad_score = 50
+
+    # COMPONENTE 4: ESTADO FÍSICO (10%)
+    estado_score = 100
+
+    ultimos_3 = ultimos_5[:3]
+    partidos_completos = sum(1 for p in ultimos_3 if p['minutes'] >= 80)
+    jugo_algo = any(p['minutes'] > 0 for p in ultimos_3)
+
+    if partidos_completos == 0 and jugo_algo:
+        estado_score = 70
+
+    sustituido_temprano = sum(
+        1 for p in ultimos_3
+        if p['substitute'] == 0 and 0 < p['minutes'] < 60
+    )
+
+    if sustituido_temprano >= 2:
+        estado_score = 60
+
+    # CÁLCULO FINAL
+    recomendacion = (
+        tendencia_score * PESOS_COMPONENTES['tendencia_reciente'] +
+        consistencia_score * PESOS_COMPONENTES['consistencia'] +
+        calidad_score * PESOS_COMPONENTES['calidad_rendimiento'] +
+        estado_score * PESOS_COMPONENTES['estado_fisico']
+    )
+
+    # Ajuste: Si histórico bajo, limitar recomendación
+    porcentaje_historico = jugador['porcentaje_titularidades'] or 0
+    if porcentaje_historico < 30:
+        recomendacion = min(recomendacion, 70)
+
+    return round(max(0, min(100, recomendacion)))
 
 # === PROCESO PRINCIPAL ===
 # Primero obtener todos los equipos
@@ -145,6 +374,10 @@ for t in teams:
         
         # Consultar lesiones futuras
         baja, tipo_baja, razon_baja = get_player_injuries(id)
+
+        # Traducir tipo y razón de baja al español
+        tipo_baja = traducir_tipo_baja(tipo_baja)
+        razon_baja = traducir_razon_baja(razon_baja)
 
         # --- BUSCAR ESTADÍSTICAS DE LA LIGA ---
         stats = next((s for s in stats_list if s.get("league", {}).get("id") == LEAGUE_ID), None)
@@ -191,6 +424,9 @@ for t in teams:
 
             # Estadísticas
             posicion = games.get("position")
+            # Traducir posición al español
+            if posicion:
+                posicion = POSICIONES_ES.get(posicion, posicion)
             minutos = games.get("minutes") or 0
             partidos = games.get("appearences") or 0
             titular = games.get("lineups") or 0
@@ -328,7 +564,7 @@ for t in teams:
             passes_accuracy=VALUES(passes_accuracy),
             tackles_total=VALUES(tackles_total),
             tackles_blocks=VALUES(tackles_blocks),
-            tackles_interceptions=VALUES(tackles_intercepciones),
+            tackles_interceptions=VALUES(tackles_interceptions),
             duels_total=VALUES(duels_total),
             duels_won=VALUES(duels_won),
             dribbles_attempts=VALUES(dribbles_attempts),
@@ -369,15 +605,101 @@ for t in teams:
             actualizado, SEASON
         ))
         
-# === CERRAR CONEXIÓN ===
-
 # === ELIMINAR REGISTROS ===
 sql2 = "DELETE FROM jugadores_laliga WHERE team_logo IS NULL"
 cursor.execute(sql2)
-
 conn.commit()
+
+print("\n" + "=" * 60)
+print("[OK] Actualizacion de jugadores completada")
+print("=" * 60)
+
+# =====================================================
+# CALCULAR RECOMENDACIONES FANTASY
+# =====================================================
+print("\n" + "=" * 60)
+print("CALCULANDO RECOMENDACIONES FANTASY")
+print("Algoritmo mejorado v2 - 4 componentes")
+print("=" * 60)
+
+# Obtener todos los jugadores de la temporada actual
+cursor.execute("""
+    SELECT id, nombre, posicion, baja
+    FROM jugadores_laliga
+    WHERE season = %s
+    ORDER BY team_name, nombre
+""", (SEASON,))
+
+jugadores = cursor.fetchall()
+total = len(jugadores)
+
+print(f"\nProcesando {total} jugadores...\n")
+
+actualizados = 0
+lesionados = 0
+sin_datos = 0
+
+for i, jugador in enumerate(jugadores, 1):
+    player_id = jugador['id']
+    nombre = jugador['nombre']
+
+    # Calcular recomendación
+    recomendacion = calcular_recomendacion_fantasy(player_id, cursor)
+
+    # Actualizar en BD
+    cursor.execute("""
+        UPDATE jugadores_laliga
+        SET recomendacion_fantasy = %s
+        WHERE id = %s AND season = %s
+    """, (recomendacion, player_id, SEASON))
+
+    # Contadores
+    if jugador['baja'] == 1:
+        lesionados += 1
+    elif recomendacion == 0:
+        sin_datos += 1
+
+    actualizados += 1
+
+    # Mostrar progreso cada 50 jugadores
+    if i % 50 == 0:
+        print(f"Procesados {i}/{total} jugadores...")
+
+# Commit de recomendaciones
+conn.commit()
+
+print("\n" + "=" * 60)
+print("[OK] RECOMENDACIONES CALCULADAS")
+print("=" * 60)
+print(f"Total procesados: {actualizados}")
+print(f"Lesionados (0%): {lesionados}")
+print(f"Sin datos suficientes: {sin_datos}")
+print(f"Con recomendación: {actualizados - lesionados - sin_datos}")
+print("=" * 60)
+
+# Estadísticas de distribución
+cursor.execute("""
+    SELECT
+        COUNT(CASE WHEN recomendacion_fantasy >= 90 THEN 1 END) as oro,
+        COUNT(CASE WHEN recomendacion_fantasy >= 70 AND recomendacion_fantasy < 90 THEN 1 END) as plata,
+        COUNT(CASE WHEN recomendacion_fantasy >= 40 AND recomendacion_fantasy < 70 THEN 1 END) as bronce,
+        COUNT(CASE WHEN recomendacion_fantasy < 40 AND recomendacion_fantasy > 0 THEN 1 END) as riesgo
+    FROM jugadores_laliga
+    WHERE season = %s AND baja = 0
+""", (SEASON,))
+
+stats = cursor.fetchone()
+
+print("\n[STATS] DISTRIBUCION DE MEDALLAS:")
+print(f"  [ORO] (90-100%): {stats['oro']} jugadores")
+print(f"  [PLATA] (70-89%): {stats['plata']} jugadores")
+print(f"  [BRONCE] (40-69%): {stats['bronce']} jugadores")
+print(f"  [RIESGO] (0-39%): {stats['riesgo']} jugadores")
+print("=" * 60)
+
+# Cerrar conexión
 conn.close()
-print("Actualizacion completada con todos los datos de jugadores")
+print("\n[OK] Proceso completo finalizado")
 
 # Lanzar deploy automático si está activo en .env
 from dotenv import load_dotenv

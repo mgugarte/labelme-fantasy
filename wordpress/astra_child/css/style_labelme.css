@@ -1,171 +1,317 @@
 /*
-Theme Name: Astra Child
-Template: astra_child
+==============================================
+LabelMe - Fantasy LaLiga
+style_labelme.css - Estilos específicos de page-labelme.php
+==============================================
+Este archivo se usa JUNTO con labelme_global.css
+Contiene estilos específicos de la página de jugadores
 */
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  background-color: #0f172a;
-  color: #f1f5f9;
-}
-header {
-  background-color: #1e293b;
-  padding: 1.5rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-nav a {
-  color: #e0e7ff;
-  margin-left: 1rem;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s;
-}
-nav a:hover {
-  color: #60a5fa;
-}
-.hero {
-  padding: 4rem 2rem;
+
+/* Importar variables del archivo global si es necesario */
+@import url('labelme_global.css');
+
+/* ============================================
+   SECCIÓN BREADCRUMB JUGADORES (específica)
+   ============================================ */
+.breadcrumb-jugadores {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 2rem 1.5rem;
   text-align: center;
-  background: linear-gradient(to right, #3b82f6, #2563eb);
-  color: white;
-}
-.hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-.hero p {
-  font-size: 1.25rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-/*.hero {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(-45deg, #3b82f6, #2563eb, #1e3a8a, #0f172a);
-  background-size: 400% 400%;
-  animation: gradientBG 12s ease infinite;
-  z-index: 1;
+  border-bottom: 2px solid #e5e7eb;
 }
 
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.hero h2, .hero p {
-  position: relative;
-  z-index: 2;
-}
-*/
-.section {
-  padding: 3rem 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.section h3 {
+.breadcrumb-jugadores h1 {
   font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #93c5fd;
-  border-bottom: 2px solid #3b82f6;
-  display: inline-block;
-  padding-bottom: 0.3rem;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
 }
-.section p {
-  font-size: 1.125rem;
+
+.breadcrumb-jugadores p {
+  color: #64748b;
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
+.contenedor-principal {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ============================================
+   SECCIÓN DE INFORMACIÓN
+   ============================================ */
+.info-seccion {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.info-seccion h2 {
+  color: #0f172a;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  border-bottom: 3px solid #3b82f6;
+  padding-bottom: 0.75rem;
+}
+
+.info-seccion h3 {
+  color: #0f172a;
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.75rem 0;
+  font-weight: 600;
+}
+
+.info-seccion p {
   line-height: 1.7;
-  margin-bottom: 1.2rem;
+  color: #475569;
+  margin-bottom: 1rem;
 }
-video {
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+
+.info-seccion strong {
+  color: #1e293b;
+  font-weight: 600;
 }
-.example-box {
-  background-color: #1e293b;
-  border-left: 4px solid #3b82f6;
-  padding: 1rem 1.5rem;
-  margin-top: 2rem;
-  border-radius: 8px;
-}
-.example-box p {
-  margin: 0;
-  color: #e2e8f0;
-}
-footer {
-  background-color: #0f172a;
-  color: #94a3b8;
-  text-align: center;
-  padding: 1.5rem;
-  margin-top: 4rem;
-  font-size: 0.9rem;
-}
-.video-row {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  flex-wrap: wrap;
+
+/* ============================================
+   CARACTERÍSTICAS DESTACADAS
+   ============================================ */
+.caracteristicas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
   margin: 2rem 0;
 }
-.video-row > div {
-  flex: 1 1 300px;
-}
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 2rem;
-  }
-}
-.btn-cta {
-    display: inline-block;
-    background: linear-gradient(to right, #3b82f6, #2563eb);
-    color: white;
-    padding: 0.8rem 1.6rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-.btn-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-}
 
-.impact-card {
-  background-color: #1e293b;
-  border-left: 6px solid #3b82f6;
+.caracteristica-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: #f8fafc;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  margin-top: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid #3b82f6;
 }
-.impact-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+.caracteristica-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
-.impact-icon {
-  font-size: 2rem;
-  background: linear-gradient(to right, #60a5fa, #2563eb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.impact-card h4 {
-  margin: 0 0 0.3rem 0;
-  font-size: 1.3rem;
-  color: #93c5fd;
-}
-.impact-card p {
-  margin: 0;
+
+.caracteristica-item h3 {
+  color: #0f172a;
   font-size: 1.1rem;
-  color: #e2e8f0;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.caracteristica-item p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================
+   TIP BOX
+   ============================================ */
+.tip-box {
+  background: #f1f5f9;
+  border-left: 4px solid #3b82f6;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.tip-box p {
+  margin: 0;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.tip-box strong {
+  color: #1e293b;
+}
+
+/* ============================================
+   ORDENAMIENTO DE TABLA (iconos)
+   ============================================ */
+.tabla-jugadores th.sortable {
+  position: relative;
+  padding-right: 25px;
+}
+
+.tabla-jugadores th.sortable::after {
+  content: '⇅';
+  position: absolute;
+  right: 8px;
+  opacity: 0.3;
+  font-size: 0.9em;
+}
+
+.tabla-jugadores th.sorted-asc::after {
+  content: '▲';
+  opacity: 1;
+  color: #3b82f6;
+}
+
+.tabla-jugadores th.sorted-desc::after {
+  content: '▼';
+  opacity: 1;
+  color: #3b82f6;
+}
+
+/* ============================================
+   ESTADOS ESPECIALES DE CELDAS
+   ============================================ */
+.tabla-jugadores td.highlight-green {
+  background-color: #d1fae5;
+  font-weight: 600;
+  color: #065f46;
+}
+
+.tabla-jugadores td.highlight-red {
+  background-color: #fee2e2;
+  font-weight: 600;
+  color: #991b1b;
+}
+
+.tabla-jugadores td.highlight-yellow {
+  background-color: #fef3c7;
+  font-weight: 600;
+  color: #92400e;
+}
+
+/* ============================================
+   LOADING SPINNER (opcional)
+   ============================================ */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f4f6;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ============================================
+   MENSAJE VACÍO
+   ============================================ */
+.mensaje-vacio {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.mensaje-vacio p {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* ============================================
+   SECCIÓN DE ESTADÍSTICAS GENERALES
+   ============================================ */
+.stats-generales {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: white;
+}
+
+.stat-card .numero {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+.stat-card .descripcion {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  color: white;
+}
+
+/* ============================================
+   RESPONSIVE ESPECÍFICO
+   ============================================ */
+@media (max-width: 768px) {
+  .breadcrumb-jugadores h1 {
+    font-size: 1.5rem;
+  }
+
+  .breadcrumb-jugadores p {
+    font-size: 0.9rem;
+  }
+
+  .contenedor-principal {
+    padding: 1rem;
+  }
+
+  .info-seccion {
+    padding: 1.5rem;
+  }
+
+  .info-seccion h2 {
+    font-size: 1.5rem;
+  }
+
+  .caracteristicas-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .caracteristica-item {
+    padding: 1rem;
+  }
+
+  .stats-generales {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem;
+  }
+
+  .stat-card .numero {
+    font-size: 2rem;
+  }
 }

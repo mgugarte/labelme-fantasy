@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(magick:*)",
+      "Bash(convert:*)",
+      "Bash(powershell -Command:*)"
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+/* ============================================
+   CUSTOM DROPDOWN - Reemplazo de <select>
+   ============================================ */
+
+/* Ocultar el select nativo */
+.filtro-grupo select.custom-select {
+  display: none;
+}
+
+/* Contenedor del dropdown personalizado */
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+/* Botón que muestra la opción seleccionada */
+.custom-dropdown-toggle {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.custom-dropdown-toggle:hover {
+  border-color: #2563eb;
+}
+
+.custom-dropdown-toggle:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Flecha del dropdown */
+.custom-dropdown-toggle::after {
+  content: '▼';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: #64748b;
+  transition: transform 0.2s ease;
+}
+
+.custom-dropdown.active .custom-dropdown-toggle::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Lista de opciones */
+.custom-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+}
+
+.custom-dropdown.active .custom-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Opciones individuales */
+.custom-dropdown-option {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.custom-dropdown-option:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.custom-dropdown-option.selected {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.custom-dropdown-option:first-child {
+  border-radius: 6px 6px 0 0;
+}
+
+.custom-dropdown-option:last-child {
+  border-radius: 0 0 6px 6px;
+}
+
+/* Scrollbar personalizada */
+.custom-dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-dropdown-menu::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.custom-dropdown-menu::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.custom-dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive móvil */
+@media (max-width: 768px) {
+  .custom-dropdown-menu {
+    max-height: 250px;
+  }
+  
+  .custom-dropdown-toggle {
+    font-size: 1rem; /* Evitar zoom en iOS */
+  }
+}

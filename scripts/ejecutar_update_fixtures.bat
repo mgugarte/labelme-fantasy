@@ -1,0 +1,36 @@
+@echo off
+REM Batch file para ejecutar script Python diariamente
+REM Configurar la codificación UTF-8
+chcp 65001 >nul
+
+REM Registrar fecha y hora de inicio
+echo ============================================ >> "%~dp0ejecucion.log"
+echo Ejecutando script: %date% %time% >> "%~dp0ejecucion.log"
+
+REM Cambiar al directorio donde está el script
+cd /d "%~dp0"
+
+REM Inicializar Conda para el batch
+echo Inicializando Conda... >> "%~dp0ejecucion.log"
+call "C:\Users\migue\anaconda3\Scripts\activate.bat"
+
+REM Activar el entorno virtual de Conda
+echo Activando entorno my_fantasy_env... >> "%~dp0ejecucion.log"
+call conda activate my_fantasy_env
+
+REM Verificar que el entorno está activo
+echo Entorno activado >> "%~dp0ejecucion.log"
+
+REM Ejecutar el script Python
+python update_fixtures.py >> "%~dp0ejecucion.log" 2>&1
+
+REM Desactivar el entorno
+call conda deactivate
+
+REM Registrar finalización
+echo Script finalizado: %date% %time% >> "%~dp0ejecucion.log"
+echo ============================================ >> "%~dp0ejecucion.log"
+echo.
+
+REM Si quieres que la ventana se quede abierta para ver errores, descomenta la siguiente línea
+REM paus
