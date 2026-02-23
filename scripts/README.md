@@ -76,9 +76,23 @@ Se mantiene solo como referencia histórica.
 
 Script para actualizar los fixtures (partidos) de los jugadores. Se ejecuta independientemente si es necesario.
 
+**Cómo ejecutar:**
+```bash
+python update_fixtures.py
+```
+
+O usa el archivo batch:
+```bash
+ejecutar_update_fixtures.bat
+```
+
 ### `calculate_stats_from_fixtures.py`
 
 Script para recalcular estadísticas a partir de los fixtures guardados. Útil para pruebas o correcciones.
+
+### `add_recommendation_column.sql`
+
+Script SQL para agregar la columna de recomendación fantasy a la tabla de jugadores. Solo necesario en la configuración inicial.
 
 ## 🔧 Requisitos
 
@@ -127,5 +141,6 @@ Para problemas o sugerencias, contacta al equipo de LabelMe Fantasy.
 
 ---
 
-**Última actualización:** 2026-01-19
+**Última actualización:** 2026-02-23
 **Versión del algoritmo:** v2 (4 componentes)
+**Temporada:** 2025
