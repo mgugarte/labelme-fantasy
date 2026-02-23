@@ -1,6 +1,7 @@
 # LabelMe Fantasy
 
 Sistema de gestión y análisis de datos para LaLiga Fantasy. Incluye scripts de actualización automática de jugadores y un tema de WordPress personalizado.
+El resultado se encuentra en labelme.es
 
 ## Estructura del Proyecto
 
