@@ -1,78 +1,81 @@
 # LabelMe Fantasy
 
-Sistema de gestión y análisis de datos para LaLiga Fantasy. Incluye scripts de actualización automática de jugadores y un tema de WordPress personalizado.
-El resultado se encuentra en https://labelme.es/
+Data management and analysis system for LaLiga Fantasy. Includes automatic player update scripts and a custom WordPress theme.
 
-## Estructura del Proyecto
+Live site: https://labelme.es/
+
+> **Note:** Much of the code, database fields, and output are in Spanish since this project is for LaLiga (Spanish football league) and I'm Spanish.
+
+## Project Structure
 
 ```
 labelme-fantasy/
-├── scripts/              # Scripts Python para actualización de datos
-│   ├── update_players.py # Script principal de actualización
+├── scripts/              # Python scripts for data updates
+│   ├── update_players.py # Main update script
 │   ├── update_fixtures.py
 │   └── ...
-├── wordpress/            # Tema hijo de Astra para WordPress
+├── wordpress/            # Astra child theme for WordPress
 │   └── astra_child/
-│       ├── css/          # Estilos personalizados
-│       └── js/           # Scripts JavaScript
-└── .env.example          # Plantilla de variables de entorno
+│       ├── css/          # Custom styles
+│       └── js/           # JavaScript files
+└── .env.example          # Environment variables template
 ```
 
-## Funcionalidades
+## Features
 
-### Scripts de Actualización
-- Obtención de datos de jugadores desde API Football
-- Cálculo automático de recomendaciones fantasy (algoritmo v2)
-- Actualización de base de datos MySQL
-- Ejecución programada mediante Task Scheduler
+### Update Scripts
+- Fetch player data from API Football
+- Automatic fantasy recommendation calculation (v2 algorithm)
+- MySQL database updates
+- Scheduled execution via Task Scheduler
 
-### Tema WordPress
-- Tema hijo de Astra con estilos personalizados
-- Integración con la base de datos de jugadores
-- Interfaz para visualización de estadísticas
+### WordPress Theme
+- Astra child theme with custom styles
+- Integration with player database
+- Statistics visualization interface
 
-## Requisitos
+## Requirements
 
 ### Python
 ```bash
 pip install pymysql requests python-dotenv
 ```
 
-### Variables de Entorno
-Copia `.env.example` a `scripts/.env` y configura:
+### Environment Variables
+Copy `.env.example` to `scripts/.env` and configure:
 
 ```env
-FOOTBALL_API_KEY=tu_api_key
+FOOTBALL_API_KEY=your_api_key
 DB_HOST=localhost
-DB_USER=tu_usuario
-DB_PASSWORD=tu_contraseña
-DB_NAME=nombre_base_datos
+DB_USER=your_user
+DB_PASSWORD=your_password
+DB_NAME=database_name
 ```
 
-## Uso Rápido
+## Quick Start
 
 ```bash
-# Activar entorno virtual
+# Activate virtual environment
 .venv\Scripts\activate
 
-# Ejecutar actualización de jugadores
+# Run player update
 cd scripts
 python update_players.py
 ```
 
-O usa el archivo batch:
+Or use the batch file:
 ```bash
 scripts\ejecutar_update_players.bat
 ```
 
-## Documentación Adicional
+## Additional Documentation
 
-- [Scripts - Documentación detallada](scripts/README.md)
+- [Scripts - Detailed documentation](scripts/README.md)
 
-## API Utilizada
+## API Used
 
-- [API-Football](https://www.api-football.com/) - Datos de LaLiga
+- [API-Football](https://www.api-football.com/) - LaLiga data
 
 ---
 
-**Temporada actual:** 2025
+**Current season:** 2025

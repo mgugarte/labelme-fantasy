@@ -1,146 +1,146 @@
-# Scripts de LabelMe Fantasy
+# LabelMe Fantasy Scripts
 
-## 📋 Descripción General
+## Overview
 
-Este directorio contiene los scripts de Python para actualizar la base de datos de jugadores de LaLiga Fantasy con datos de la API Football.
+This directory contains Python scripts to update the LaLiga Fantasy player database with data from API Football.
 
-## 🚀 Script Principal
+## Main Script
 
 ### `update_players.py`
 
-**Este es el único script que necesitas ejecutar.** Realiza todas las operaciones necesarias:
+**This is the only script you need to run.** It performs all necessary operations:
 
-1. ✅ Obtiene datos actualizados de todos los jugadores desde API Football
-2. ✅ Traduce tipos de baja y razones al español
-3. ✅ Calcula las recomendaciones fantasy (algoritmo v2 con 4 componentes)
-4. ✅ Actualiza la base de datos MySQL
-5. ✅ Genera estadísticas y logs detallados
+1. Fetches updated data for all players from API Football
+2. Translates injury types and reasons to Spanish
+3. Calculates fantasy recommendations (v2 algorithm with 4 components)
+4. Updates the MySQL database
+5. Generates detailed statistics and logs
 
-**Cómo ejecutar:**
+**How to run:**
 
 ```bash
 python update_players.py
 ```
 
-O usa el archivo batch (recomendado):
+Or use the batch file (recommended):
 
 ```bash
 ejecutar_update_players.bat
 ```
 
-## ⚙️ Automatización
+## Automation
 
 ### Task Scheduler (Windows)
 
-El script está configurado para ejecutarse automáticamente mediante Windows Task Scheduler.
+The script is configured to run automatically via Windows Task Scheduler.
 
-**Configuración actual:**
-- **Archivo:** `ejecutar_update_players.bat`
-- **Frecuencia:** Diaria (configurado en Task Scheduler)
-- **Log:** Los resultados se guardan en `ejecucion.log`
+**Current configuration:**
+- **File:** `ejecutar_update_players.bat`
+- **Frequency:** Daily (configured in Task Scheduler)
+- **Log:** Results are saved in `ejecucion.log`
 
-Para ver o modificar la tarea programada:
-1. Abre "Programador de tareas" de Windows
-2. Busca la tarea relacionada con LabelMe Fantasy
-3. Modifica frecuencia o configuración según necesites
+To view or modify the scheduled task:
+1. Open Windows "Task Scheduler"
+2. Find the LabelMe Fantasy related task
+3. Modify frequency or settings as needed
 
-## 📊 Algoritmo de Recomendación Fantasy
+## Fantasy Recommendation Algorithm
 
-El script calcula automáticamente una recomendación (0-100%) para cada jugador basándose en:
+The script automatically calculates a recommendation (0-100%) for each player based on:
 
-### Componentes del Algoritmo (v2)
+### Algorithm Components (v2)
 
-| Componente | Peso | Descripción |
-|------------|------|-------------|
-| **Tendencia Reciente** | 40% | Últimos 5 partidos con pesos exponenciales (más reciente = más peso) |
-| **Consistencia** | 25% | Estabilidad en el rendimiento (desviación estándar del rating) |
-| **Calidad Rendimiento** | 25% | Rating promedio contextualizado por posición |
-| **Estado Físico** | 10% | Detección de molestias/fatiga basada en minutos jugados |
+| Component | Weight | Description |
+|-----------|--------|-------------|
+| **Recent Trend** | 40% | Last 5 matches with exponential weights (more recent = more weight) |
+| **Consistency** | 25% | Performance stability (rating standard deviation) |
+| **Performance Quality** | 25% | Average rating contextualized by position |
+| **Physical Condition** | 10% | Fatigue/discomfort detection based on minutes played |
 
-### Clasificación de Medallas
+### Medal Classification
 
-- 🥇 **Oro (90-100%)**: Recomendación máxima
-- 🥈 **Plata (70-89%)**: Buena recomendación
-- 🥉 **Bronce (40-69%)**: Recomendación media
-- 🔴 **Riesgo (0-39%)**: Recomendación baja
+- **Gold (90-100%)**: Maximum recommendation
+- **Silver (70-89%)**: Good recommendation
+- **Bronze (40-69%)**: Medium recommendation
+- **Risk (0-39%)**: Low recommendation
 
-## 📁 Otros Archivos
+## Other Files
 
-### `calculate_recommendation.py` ⚠️ OBSOLETO
+### `calculate_recommendation.py` - DEPRECATED
 
-Este archivo ya NO es necesario. Su funcionalidad ha sido integrada en `update_players.py`.
+This file is NO longer needed. Its functionality has been integrated into `update_players.py`.
 
-Se mantiene solo como referencia histórica.
+Kept only for historical reference.
 
 ### `update_fixtures.py`
 
-Script para actualizar los fixtures (partidos) de los jugadores. Se ejecuta independientemente si es necesario.
+Script to update player fixtures (matches). Run independently if needed.
 
-**Cómo ejecutar:**
+**How to run:**
 ```bash
 python update_fixtures.py
 ```
 
-O usa el archivo batch:
+Or use the batch file:
 ```bash
 ejecutar_update_fixtures.bat
 ```
 
 ### `calculate_stats_from_fixtures.py`
 
-Script para recalcular estadísticas a partir de los fixtures guardados. Útil para pruebas o correcciones.
+Script to recalculate statistics from saved fixtures. Useful for testing or corrections.
 
 ### `add_recommendation_column.sql`
 
-Script SQL para agregar la columna de recomendación fantasy a la tabla de jugadores. Solo necesario en la configuración inicial.
+SQL script to add the fantasy recommendation column to the players table. Only needed during initial setup.
 
-## 🔧 Requisitos
+## Requirements
 
-### Librerías Python
+### Python Libraries
 
 ```bash
 pip install pymysql requests python-dotenv
 ```
 
-### Variables de Entorno (.env)
+### Environment Variables (.env)
 
-Crea un archivo `.env` en el directorio del proyecto con:
+Create a `.env` file in the project directory with:
 
 ```env
-FOOTBALL_API_KEY=tu_api_key
+FOOTBALL_API_KEY=your_api_key
 DB_HOST=localhost
-DB_USER=tu_usuario
-DB_PASSWORD=tu_contraseña
-DB_NAME=nombre_base_datos
+DB_USER=your_user
+DB_PASSWORD=your_password
+DB_NAME=database_name
 ```
 
-## 📝 Logs
+## Logs
 
-Cada ejecución genera un log en `ejecucion.log` con:
-- Fecha y hora de inicio/fin
-- Número de jugadores procesados
-- Distribución de medallas calculadas
-- Errores si los hubiera
+Each execution generates a log in `ejecucion.log` with:
+- Start/end date and time
+- Number of players processed
+- Calculated medal distribution
+- Errors if any
 
-## 🆘 Solución de Problemas
+## Troubleshooting
 
-### Error de conexión a BD
-Verifica las credenciales en el archivo `.env`
+### Database connection error
+Check credentials in the `.env` file
 
-### Error de API
-Verifica que tu API key sea válida en [api-football.com](https://www.api-football.com/)
+### API error
+Verify your API key is valid at [api-football.com](https://www.api-football.com/)
 
-### Script no se ejecuta automáticamente
-1. Verifica Task Scheduler
-2. Revisa que las rutas en el .bat sean correctas
-3. Comprueba que el entorno Conda esté activado correctamente
+### Script doesn't run automatically
+1. Check Task Scheduler
+2. Verify paths in the .bat file are correct
+3. Make sure the Conda environment is activated correctly
 
-## 📧 Soporte
+## Support
 
-Para problemas o sugerencias, contacta al equipo de LabelMe Fantasy.
+For issues or suggestions, contact the LabelMe Fantasy team.
 
 ---
 
-**Última actualización:** 2026-02-23
-**Versión del algoritmo:** v2 (4 componentes)
-**Temporada:** 2025
+**Last updated:** 2026-02-23
+**Algorithm version:** v2 (4 components)
+**Season:** 2025
