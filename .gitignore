@@ -11,7 +11,7 @@ wp-content/backup-db/
 .env
 #Claude
 .claude/settings.local.json
-.claude
+.claude/
 # Python
 __pycache__/
 *.py[cod]
