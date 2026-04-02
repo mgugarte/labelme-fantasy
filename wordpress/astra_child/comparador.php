@@ -18,7 +18,7 @@ Template Name: Comparador de Jugadores
   <meta property="og:description" content="Compara estadísticas de jugadores de LaLiga para optimizar tu equipo Fantasy. Goles, asistencias, rating y mucho más.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="<?php echo home_url('/comparador/'); ?>">
-  <meta property="og:image" content="http://labelme.es/wp-content/uploads/2025/05/labelMe_negro-removebg-preview.png">
+  <meta property="og:image" content="http://labelme.es/wp-content/uploads/2026/02/logo_beta.png">
   
   <!-- Canonical URL -->
   <link rel="canonical" href="<?php echo home_url('/comparador/'); ?>">
@@ -76,7 +76,7 @@ Template Name: Comparador de Jugadores
 <header class="header-modern">
   <div class="header-container">
     <a href="/" class="logo-link">
-      <img src="http://labelme.es/wp-content/uploads/2025/05/labelMe_negro-removebg-preview.png" alt="LabelMe" class="logo-img">
+      <img src="http://labelme.es/wp-content/uploads/2026/02/logo_beta.png" alt="LabelMe" class="logo-img">
     </a>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">
@@ -385,6 +385,17 @@ async function mostrarComparacion(jugadores) {
     return { probabilidad: recomendacion, nivel, color, icono };
   });
 
+  // Obtener valores de mercado de cada jugador — desactivado temporalmente
+  // const valoresMercado = await Promise.all(
+  //   jugadores.map(async (jugador) => {
+  //     try {
+  //       const r = await fetch(`/wp-json/labelme/v1/jugador-valores-mercado?player_id=${jugador.id}`);
+  //       return await r.json();
+  //     } catch (e) { return {}; }
+  //   })
+  // );
+  const valoresMercado = jugadores.map(() => ({}));
+
   const ultimosPartidos = await Promise.all(
     Promise.all(
       jugadores.map(async (jugador) => {
@@ -462,6 +473,56 @@ async function mostrarComparacion(jugadores) {
   });
 
   html += '</div></div>';
+
+  // ========================================
+  // SECCIÓN: VALORES DE MERCADO POR APP — desactivado temporalmente
+  // ========================================
+  /*
+  (function() {
+    const appsInfo = [
+      { key: 'mister',         nombre: 'Mister',         color: '#e63946', bg: 'linear-gradient(135deg,#fff1f2,#ffe4e6)', border: '#e63946' },
+      { key: 'biwenger',       nombre: 'Biwenger',       color: '#1d4ed8', bg: 'linear-gradient(135deg,#eff6ff,#dbeafe)', border: '#3b82f6' },
+      { key: 'comunio',        nombre: 'Comunio',        color: '#059669', bg: 'linear-gradient(135deg,#ecfdf5,#d1fae5)', border: '#10b981' },
+      { key: 'laliga_fantasy', nombre: 'LaLiga Fantasy', color: '#7c3aed', bg: 'linear-gradient(135deg,#f5f3ff,#ede9fe)', border: '#8b5cf6' },
+    ];
+
+    function fmtVal(v) {
+      if (!v) return '—';
+      if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+      if (v >= 1000)    return Math.round(v / 1000) + 'K';
+      return String(v);
+    }
+
+    function fmtChange(c) {
+      if (!c) return '';
+      const color = c > 0 ? '#10b981' : '#ef4444';
+      const arrow = c > 0 ? '▲' : '▼';
+      const abs   = fmtVal(Math.abs(c));
+      return `<div style="font-size:0.7rem;color:${color};font-weight:700;margin-top:0.2rem;">${arrow} ${c > 0 ? '+' : '-'}${abs}</div>`;
+    }
+
+    html += '<div style="background:white;padding:1.5rem;border-radius:12px;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.08);">';
+    html += '<h3 style="margin:0 0 1.25rem 0;color:#0f172a;font-size:1.25rem;text-align:center;">💰 Valor de Mercado por App</h3>';
+    html += '<div style="display:grid;gap:0.75rem;">';
+
+    appsInfo.forEach(app => {
+      html += `<div style="background:${app.bg};border-left:4px solid ${app.border};border-radius:10px;padding:1rem 1.25rem;display:grid;grid-template-columns:130px repeat(${jugadores.length},1fr);align-items:center;gap:0.75rem;">`;
+      html += `<div style="font-weight:700;color:${app.color};font-size:0.85rem;">${app.nombre}</div>`;
+      jugadores.forEach((j, idx) => {
+        const info = valoresMercado[idx]?.[app.key];
+        const valor  = info ? fmtVal(info.value)  : '—';
+        const cambio = info ? fmtChange(info.change) : '';
+        html += `<div style="text-align:center;">
+          <div style="font-size:1.4rem;font-weight:900;color:${app.color};">${valor}</div>
+          ${cambio}
+        </div>`;
+      });
+      html += '</div>';
+    });
+
+    html += '</div></div>';
+  })();
+  */
 
   // ========================================
   // NUEVA SECCIÓN: FORMA RECIENTE (ÚLTIMOS 5 PARTIDOS)

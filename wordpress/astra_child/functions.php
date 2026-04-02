@@ -647,3 +647,39 @@ function labelme_jugador_recomendacion_fantasy($request) {
         'titularidades_historicas' => $historico
     );
 }
+
+// === API REST: VALORES DE MERCADO POR APP ===
+add_action('rest_api_init', function () {
+    register_rest_route('labelme/v1', '/jugador-valores-mercado', array(
+        'methods' => 'GET',
+        'callback' => 'labelme_jugador_valores_mercado',
+        'permission_callback' => '__return_true'
+    ));
+});
+
+function labelme_jugador_valores_mercado($request) {
+    global $wpdb;
+    $player_id = intval($request->get_param('player_id'));
+    if (!$player_id) return new WP_Error('no_player', 'Player ID requerido', array('status' => 400));
+
+    $rows = $wpdb->get_results($wpdb->prepare("
+        SELECT app, value, value_change, recorded_at
+        FROM fantasy_market_values fmv
+        WHERE player_id = %d
+          AND recorded_at = (
+              SELECT MAX(recorded_at)
+              FROM fantasy_market_values
+              WHERE player_id = %d AND app = fmv.app
+          )
+    ", $player_id, $player_id), ARRAY_A);
+
+    $resultado = [];
+    foreach ($rows as $r) {
+        $resultado[$r['app']] = [
+            'value'  => intval($r['value']),
+            'change' => intval($r['value_change']),
+            'date'   => $r['recorded_at'],
+        ];
+    }
+    return $resultado;
+}

@@ -1,0 +1,1722 @@
+[
+  {
+    "laliga_fantasy_id": "2831",
+    "nickname": "Ballestero",
+    "name": "Carlos Ballestero",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 687263
+  },
+  {
+    "laliga_fantasy_id": "1090",
+    "nickname": "Raíllo",
+    "name": "Antonio Raíllo",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 2024198
+  },
+  {
+    "laliga_fantasy_id": "2595",
+    "nickname": "Colombatto",
+    "name": "Santiago Colombatto",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 688651
+  },
+  {
+    "laliga_fantasy_id": "2745",
+    "nickname": "Edu Altozano",
+    "name": "Eduardo Altozano Agudo",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 686376
+  },
+  {
+    "laliga_fantasy_id": "2397",
+    "nickname": "Pablo Durán",
+    "name": "Pablo Durán",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 688413
+  },
+  {
+    "laliga_fantasy_id": "2423",
+    "nickname": "Lunin",
+    "name": "Andrii Lunin",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 687220
+  },
+  {
+    "laliga_fantasy_id": "2458",
+    "nickname": "Diakhaby",
+    "name": "Mouctar Diakhaby",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 702124
+  },
+  {
+    "laliga_fantasy_id": "2439",
+    "nickname": "Pacheco",
+    "name": "Jon Pacheco",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 692038
+  },
+  {
+    "laliga_fantasy_id": "1033",
+    "nickname": "Catena",
+    "name": "Alejandro Catena",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 53192548
+  },
+  {
+    "laliga_fantasy_id": "2899",
+    "nickname": "Astiazaran",
+    "name": "Lander Astiazarán",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 676080
+  },
+  {
+    "laliga_fantasy_id": "2468",
+    "nickname": "Diego Conde",
+    "name": "Diego Conde",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 687523
+  },
+  {
+    "laliga_fantasy_id": "2405",
+    "nickname": "Toni Lato",
+    "name": "Antonio Latorre Grueso",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 686487
+  },
+  {
+    "laliga_fantasy_id": "2369",
+    "nickname": "Gazzaniga",
+    "name": "Paulo Gazzaniga",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 1320354
+  },
+  {
+    "laliga_fantasy_id": "2146",
+    "nickname": "Asencio",
+    "name": "Raúl Asencio del Rosario",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 24123708
+  },
+  {
+    "laliga_fantasy_id": "2414",
+    "nickname": "Bellerín",
+    "name": "Héctor Bellerín",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 2506933
+  },
+  {
+    "laliga_fantasy_id": "2559",
+    "nickname": "V. Rosier",
+    "name": "Valentin Rosier",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 2496592
+  },
+  {
+    "laliga_fantasy_id": "2714",
+    "nickname": "Javi Rueda",
+    "name": "Javi Rueda",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 2594835
+  },
+  {
+    "laliga_fantasy_id": "2876",
+    "nickname": "Iker Muñoz",
+    "name": "Iker Ortín",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 681525
+  },
+  {
+    "laliga_fantasy_id": "1031",
+    "nickname": "Comesaña",
+    "name": "Santiago Comesaña",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 27900802
+  },
+  {
+    "laliga_fantasy_id": "1221",
+    "nickname": "Gavi",
+    "name": "Pablo Martín Páez Gavira",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1121801
+  },
+  {
+    "laliga_fantasy_id": "2327",
+    "nickname": "Lemar",
+    "name": "Thomas Lemar",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1484688
+  },
+  {
+    "laliga_fantasy_id": "2799",
+    "nickname": "Amrabat",
+    "name": "Sofyan Amrabat",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 921988
+  },
+  {
+    "laliga_fantasy_id": "2944",
+    "nickname": "Obed Vargas",
+    "name": "Obed Vargas",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1459125
+  },
+  {
+    "laliga_fantasy_id": "2492",
+    "nickname": "Iago Aspas",
+    "name": "Iago Aspas",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1918377
+  },
+  {
+    "laliga_fantasy_id": "2623",
+    "nickname": "Dolan",
+    "name": "Tyrhys Dolan",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 2111887
+  },
+  {
+    "laliga_fantasy_id": "2771",
+    "nickname": "Mikautadze",
+    "name": "Georges Mikautadze",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 29993624
+  },
+  {
+    "laliga_fantasy_id": "2759",
+    "nickname": "Vlachodimos",
+    "name": "Odysseas Vlachodimos",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 1113232
+  },
+  {
+    "laliga_fantasy_id": "1614",
+    "nickname": "Cardona",
+    "name": "Sergi Cardona",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 2889156
+  },
+  {
+    "laliga_fantasy_id": "1775",
+    "nickname": "Pau Cubarsí",
+    "name": "Pau Cubarsí",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 56909586
+  },
+  {
+    "laliga_fantasy_id": "2885",
+    "nickname": "Xanet Olaiz",
+    "name": "Xanet Oláiz",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 680543
+  },
+  {
+    "laliga_fantasy_id": "2390",
+    "nickname": "Starfelt",
+    "name": "Carl Starfelt",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 3153579
+  },
+  {
+    "laliga_fantasy_id": "2873",
+    "nickname": "Santos",
+    "name": "Unai Santos",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 681525
+  },
+  {
+    "laliga_fantasy_id": "2508",
+    "nickname": "Cabrera",
+    "name": "Leandro Cabrera",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 19496393
+  },
+  {
+    "laliga_fantasy_id": "2661",
+    "nickname": "Djene",
+    "name": "Djené Dakonam",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 2787261
+  },
+  {
+    "laliga_fantasy_id": "2927",
+    "nickname": "Thiago Fernández",
+    "name": "Thiago Fernández",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1061192
+  },
+  {
+    "laliga_fantasy_id": "2916",
+    "nickname": "Echeverri",
+    "name": "Claudio Echeverri",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 3531091
+  },
+  {
+    "laliga_fantasy_id": "2640",
+    "nickname": "Mario Martín",
+    "name": "Mario Martín",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 696052
+  },
+  {
+    "laliga_fantasy_id": "2490",
+    "nickname": "Brais Méndez",
+    "name": "Brais Méndez",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 17814687
+  },
+  {
+    "laliga_fantasy_id": "2418",
+    "nickname": "Marc Roca",
+    "name": "Marc Roca",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1631722
+  },
+  {
+    "laliga_fantasy_id": "2330",
+    "nickname": "Witsel",
+    "name": "Axel Witsel",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1937877
+  },
+  {
+    "laliga_fantasy_id": "2702",
+    "nickname": "Rafa Mir",
+    "name": "Rafa Mir",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 3799165
+  },
+  {
+    "laliga_fantasy_id": "1191",
+    "nickname": "Hugo Duro",
+    "name": "Hugo Duro Perales",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1857960
+  },
+  {
+    "laliga_fantasy_id": "356",
+    "nickname": "Gerard",
+    "name": "Gerard Moreno Balagueró",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 28150918
+  },
+  {
+    "laliga_fantasy_id": "68",
+    "nickname": "Unai Simón",
+    "name": "Unai Simón Mendibil",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 6660162
+  },
+  {
+    "laliga_fantasy_id": "1337",
+    "nickname": "Tenaglia",
+    "name": "Nahuel Tenaglia",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 7793994
+  },
+  {
+    "laliga_fantasy_id": "2297",
+    "nickname": "Affengruber",
+    "name": "David Affengruber",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 7439909
+  },
+  {
+    "laliga_fantasy_id": "2324",
+    "nickname": "J. M. Giménez",
+    "name": "José Giménez",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 4899341
+  },
+  {
+    "laliga_fantasy_id": "2346",
+    "nickname": "Álvaro Núñez",
+    "name": "Álvaro Núñez",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 7803422
+  },
+  {
+    "laliga_fantasy_id": "2894",
+    "nickname": "Orejuela",
+    "name": "Luis Orejuela",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 676080
+  },
+  {
+    "laliga_fantasy_id": "1070",
+    "nickname": "De Galarreta",
+    "name": "Inigo Ruiz de Galarreta",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 8359799
+  },
+  {
+    "laliga_fantasy_id": "2417",
+    "nickname": "Lo Celso",
+    "name": "Giovani Lo Celso",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 8002739
+  },
+  {
+    "laliga_fantasy_id": "2513",
+    "nickname": "Isco",
+    "name": "Francisco Román Alarcón Suárez",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 5977659
+  },
+  {
+    "laliga_fantasy_id": "2553",
+    "nickname": "Almada",
+    "name": "Thiago Almada",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 4056417
+  },
+  {
+    "laliga_fantasy_id": "2763",
+    "nickname": "Ounahi",
+    "name": "Azzedine Ounahi",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 10373506
+  },
+  {
+    "laliga_fantasy_id": "2382",
+    "nickname": "Isi",
+    "name": "Isi Palazón",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 8644413
+  },
+  {
+    "laliga_fantasy_id": "2400",
+    "nickname": "Pere Milla",
+    "name": "Pere Milla",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 8867352
+  },
+  {
+    "laliga_fantasy_id": "2588",
+    "nickname": "Danjuma",
+    "name": "Arnaut Danjuma",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 6025065
+  },
+  {
+    "laliga_fantasy_id": "2541",
+    "nickname": "Á. Valles",
+    "name": "Álvaro Vallés",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 2375470
+  },
+  {
+    "laliga_fantasy_id": "1680",
+    "nickname": "Daley Blind",
+    "name": "Daley Blind",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 4730843
+  },
+  {
+    "laliga_fantasy_id": "2329",
+    "nickname": "Javi Galán",
+    "name": "Javi Galán",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 3676320
+  },
+  {
+    "laliga_fantasy_id": "2757",
+    "nickname": "Gerard Martín",
+    "name": "Gerard Martín",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 17944722
+  },
+  {
+    "laliga_fantasy_id": "2806",
+    "nickname": "Laporte",
+    "name": "Aymeric Laporte",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 11641928
+  },
+  {
+    "laliga_fantasy_id": "2890",
+    "nickname": "Montes",
+    "name": "Jorge Montes",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 679794
+  },
+  {
+    "laliga_fantasy_id": "2326",
+    "nickname": "Koke",
+    "name": "Jorge Resurrección Merodio",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 17522933
+  },
+  {
+    "laliga_fantasy_id": "2338",
+    "nickname": "Aimar",
+    "name": "Aimar Oroz",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 2513049
+  },
+  {
+    "laliga_fantasy_id": "2601",
+    "nickname": "Martim Neto",
+    "name": "Martim Carvalho Neto",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 2611808
+  },
+  {
+    "laliga_fantasy_id": "2621",
+    "nickname": "Gorrotxa",
+    "name": "Jon Gorrotxategi",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 2577169
+  },
+  {
+    "laliga_fantasy_id": "2940",
+    "nickname": "Fidalgo",
+    "name": "Álvaro Fidalgo",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 3586799
+  },
+  {
+    "laliga_fantasy_id": "2332",
+    "nickname": "Sorloth",
+    "name": "Alexander Sørloth",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 17581357
+  },
+  {
+    "laliga_fantasy_id": "2574",
+    "nickname": "Gonzalo",
+    "name": "Gonzalo García",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 4488863
+  },
+  {
+    "laliga_fantasy_id": "2652",
+    "nickname": "B. Iglesias",
+    "name": "Borja Iglesias",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 26277534
+  },
+  {
+    "laliga_fantasy_id": "2769",
+    "nickname": "Jan Virgili",
+    "name": "Jan Virgili",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 4784228
+  },
+  {
+    "laliga_fantasy_id": "2507",
+    "nickname": "Dmitrovic",
+    "name": "Marko Dmitrovic",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 5832523
+  },
+  {
+    "laliga_fantasy_id": "1890",
+    "nickname": "Boyomo",
+    "name": "Enzo Boyomo",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 3952282
+  },
+  {
+    "laliga_fantasy_id": "2389",
+    "nickname": "O. Mingueza",
+    "name": "Óscar Mingueza",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 3692024
+  },
+  {
+    "laliga_fantasy_id": "2562",
+    "nickname": "Marc Pubill",
+    "name": "Marc Pubill",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 10170256
+  },
+  {
+    "laliga_fantasy_id": "2608",
+    "nickname": "Vitor Reis",
+    "name": "Vitor de Oliveira Nunes dos Reis",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 8719576
+  },
+  {
+    "laliga_fantasy_id": "2952",
+    "nickname": "Lamini",
+    "name": "Lamini Fati",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 677805
+  },
+  {
+    "laliga_fantasy_id": "1029",
+    "nickname": "Álvaro García",
+    "name": "Álvaro García",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 13805402
+  },
+  {
+    "laliga_fantasy_id": "1106",
+    "nickname": "Iván Martín",
+    "name": "Iván Martín",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 2960553
+  },
+  {
+    "laliga_fantasy_id": "2772",
+    "nickname": "C. Soler",
+    "name": "Carlos Soler",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 19437568
+  },
+  {
+    "laliga_fantasy_id": "2782",
+    "nickname": "Nico Gonzalez",
+    "name": "Nicolás González",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 4995072
+  },
+  {
+    "laliga_fantasy_id": "2928",
+    "nickname": "G. Rodríguez",
+    "name": "Guido Rodríguez",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 2760840
+  },
+  {
+    "laliga_fantasy_id": "927",
+    "nickname": "Berenguer",
+    "name": "Alejandro Berenguer Remiro",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 12301341
+  },
+  {
+    "laliga_fantasy_id": "2520",
+    "nickname": "Roberto",
+    "name": "Roberto Fernández",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 6395031
+  },
+  {
+    "laliga_fantasy_id": "2734",
+    "nickname": "Vargas",
+    "name": "Rubén Vargas",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 5159646
+  },
+  {
+    "laliga_fantasy_id": "2402",
+    "nickname": "Leo Román",
+    "name": "Leo Román",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 1052429
+  },
+  {
+    "laliga_fantasy_id": "2634",
+    "nickname": "Joan García",
+    "name": "Joan García",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 70311870
+  },
+  {
+    "laliga_fantasy_id": "74",
+    "nickname": "Yuri",
+    "name": "Yuri Berchiche Izeta",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 15652177
+  },
+  {
+    "laliga_fantasy_id": "1989",
+    "nickname": "Sergio Gómez",
+    "name": "Sergio Gómez",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 11632597
+  },
+  {
+    "laliga_fantasy_id": "2924",
+    "nickname": "Zaid Romero",
+    "name": "Zaid Romero",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 1765995
+  },
+  {
+    "laliga_fantasy_id": "2356",
+    "nickname": "R. Araujo",
+    "name": "Ronald Araujo",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 1875001
+  },
+  {
+    "laliga_fantasy_id": "701",
+    "nickname": "Barrenetxea",
+    "name": "Ander Barrenetxea Muguruza",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 18616010
+  },
+  {
+    "laliga_fantasy_id": "2784",
+    "nickname": "Marc Bernal",
+    "name": "Marc Bernal",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 3503971
+  },
+  {
+    "laliga_fantasy_id": "2465",
+    "nickname": "Fran Pérez",
+    "name": "Fran Pérez",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 689252
+  },
+  {
+    "laliga_fantasy_id": "2452",
+    "nickname": "Gudelj",
+    "name": "Nemanja Gudelj",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 710419
+  },
+  {
+    "laliga_fantasy_id": "2444",
+    "nickname": "Sucic",
+    "name": "Luka Sucic",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 698741
+  },
+  {
+    "laliga_fantasy_id": "2431",
+    "nickname": "Brahim",
+    "name": "Brahim Díaz",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 2850048
+  },
+  {
+    "laliga_fantasy_id": "2295",
+    "nickname": "Febas",
+    "name": "Aleix Febas",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 15977185
+  },
+  {
+    "laliga_fantasy_id": "2558",
+    "nickname": "Víctor Muñoz",
+    "name": "Víctor Muñoz",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 19642800
+  },
+  {
+    "laliga_fantasy_id": "2923",
+    "nickname": "Raúl Moro",
+    "name": "Raúl Moro",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 4352201
+  },
+  {
+    "laliga_fantasy_id": "2925",
+    "nickname": "Luis Vázquez",
+    "name": "Luis Vázquez",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1035080
+  },
+  {
+    "laliga_fantasy_id": "2519",
+    "nickname": "A. Batalla",
+    "name": "Augusto Batalla",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 5460312
+  },
+  {
+    "laliga_fantasy_id": "1959",
+    "nickname": "Mouriño",
+    "name": "Santiago Mouriño",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 9114363
+  },
+  {
+    "laliga_fantasy_id": "2542",
+    "nickname": "Rafa Marín",
+    "name": "Rafa Marín",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 5321683
+  },
+  {
+    "laliga_fantasy_id": "2407",
+    "nickname": "J. Mojica",
+    "name": "Johan Mojica",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 3562860
+  },
+  {
+    "laliga_fantasy_id": "2426",
+    "nickname": "E. Militão",
+    "name": "Éder Gabriel Militão",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 7398736
+  },
+  {
+    "laliga_fantasy_id": "2616",
+    "nickname": "C. Alvarez",
+    "name": "Carlos Álvarez",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 3245353
+  },
+  {
+    "laliga_fantasy_id": "2556",
+    "nickname": "Buchanan",
+    "name": "Tajon Buchanan",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 12603790
+  },
+  {
+    "laliga_fantasy_id": "2929",
+    "nickname": "Fer López",
+    "name": "Fer López",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 4615246
+  },
+  {
+    "laliga_fantasy_id": "1050",
+    "nickname": "Darder",
+    "name": "Sergi Darder",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 15278935
+  },
+  {
+    "laliga_fantasy_id": "2700",
+    "nickname": "Etta Eyong",
+    "name": "Karl Edouard Blaise Etta Eyong",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 12292597
+  },
+  {
+    "laliga_fantasy_id": "2781",
+    "nickname": "Vanat",
+    "name": "Vladyslav Vanat",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 6141382
+  },
+  {
+    "laliga_fantasy_id": "2898",
+    "nickname": "Kita",
+    "name": "Kazunari Kita",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 676080
+  },
+  {
+    "laliga_fantasy_id": "2564",
+    "nickname": "Aleñá",
+    "name": "Carles Aleñá",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 3390848
+  },
+  {
+    "laliga_fantasy_id": "1577",
+    "nickname": "Tsygankov",
+    "name": "Viktor Tsygankov",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 5953970
+  },
+  {
+    "laliga_fantasy_id": "274",
+    "nickname": "Remiro",
+    "name": "Alejandro Remiro Gargallo",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 3641925
+  },
+  {
+    "laliga_fantasy_id": "1535",
+    "nickname": "Chavarría",
+    "name": "Josep María Chavarría Pérez",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 6699188
+  },
+  {
+    "laliga_fantasy_id": "2314",
+    "nickname": "Vivian",
+    "name": "Dani Vivian",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 8841963
+  },
+  {
+    "laliga_fantasy_id": "2532",
+    "nickname": "Ruggeri",
+    "name": "Matteo Ruggeri",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 4476235
+  },
+  {
+    "laliga_fantasy_id": "2728",
+    "nickname": "Renato Veiga",
+    "name": "Renato Palma Veiga",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 7125014
+  },
+  {
+    "laliga_fantasy_id": "2914",
+    "nickname": "Bema Sina",
+    "name": "Bema Sina",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 666889
+  },
+  {
+    "laliga_fantasy_id": "581",
+    "nickname": "Rioja",
+    "name": "Luis Rioja",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 12006086
+  },
+  {
+    "laliga_fantasy_id": "637",
+    "nickname": "Moncayola",
+    "name": "Jon Moncayola",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 4237966
+  },
+  {
+    "laliga_fantasy_id": "1197",
+    "nickname": "Kubo",
+    "name": "Takefusa Kubo",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 8967679
+  },
+  {
+    "laliga_fantasy_id": "2318",
+    "nickname": "O. Sancet",
+    "name": "Oihan Sancet",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 8132303
+  },
+  {
+    "laliga_fantasy_id": "2464",
+    "nickname": "Pepelu",
+    "name": "José Luis García Vayá",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 3597738
+  },
+  {
+    "laliga_fantasy_id": "91",
+    "nickname": "Iñaki Williams",
+    "name": "Iñaki Williams Arthuer",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 7034053
+  },
+  {
+    "laliga_fantasy_id": "2504",
+    "nickname": "Ayoze",
+    "name": "Ayoze Pérez",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 6514558
+  },
+  {
+    "laliga_fantasy_id": "2505",
+    "nickname": "Griezmann",
+    "name": "Antoine Griezmann",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 12598096
+  },
+  {
+    "laliga_fantasy_id": "184",
+    "nickname": "David Soria",
+    "name": "David Soria Solís",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 4075422
+  },
+  {
+    "laliga_fantasy_id": "255",
+    "nickname": "Le Normand",
+    "name": "Robin Le Normand",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 4785144
+  },
+  {
+    "laliga_fantasy_id": "2531",
+    "nickname": "Trent",
+    "name": "Trent Alexander-Arnold",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 15602235
+  },
+  {
+    "laliga_fantasy_id": "2833",
+    "nickname": "N. Mendy",
+    "name": "Nobel Mendy",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 3173366
+  },
+  {
+    "laliga_fantasy_id": "2881",
+    "nickname": "D. Martínez",
+    "name": "Dani Martinez",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 680543
+  },
+  {
+    "laliga_fantasy_id": "2953",
+    "nickname": "Gattoni",
+    "name": "Federico Gattoni",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 673885
+  },
+  {
+    "laliga_fantasy_id": "652",
+    "nickname": "Rubén García",
+    "name": "Rubén García Santos",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 17510101
+  },
+  {
+    "laliga_fantasy_id": "1246",
+    "nickname": "Blanco",
+    "name": "Antonio Blanco",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 2133505
+  },
+  {
+    "laliga_fantasy_id": "2384",
+    "nickname": "Unai Lopez",
+    "name": "Unai López",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1309340
+  },
+  {
+    "laliga_fantasy_id": "2487",
+    "nickname": "Javi Guerra",
+    "name": "Javi Guerra",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 2148168
+  },
+  {
+    "laliga_fantasy_id": "2516",
+    "nickname": "Puado",
+    "name": "Javi Puado",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1167185
+  },
+  {
+    "laliga_fantasy_id": "2434",
+    "nickname": "Rodrygo",
+    "name": "Rodrygo Silva de Goes",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 22540978
+  },
+  {
+    "laliga_fantasy_id": "2602",
+    "nickname": "Álvaro",
+    "name": "Álvaro Rodríguez",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 2763908
+  },
+  {
+    "laliga_fantasy_id": "2910",
+    "nickname": "Satriano",
+    "name": "Martín Satriano",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 5051013
+  },
+  {
+    "laliga_fantasy_id": "1219",
+    "nickname": "Agirrezabala",
+    "name": "Julen Agirrezabala",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 1407487
+  },
+  {
+    "laliga_fantasy_id": "121",
+    "nickname": "Bartra",
+    "name": "Marc Bartra Aregall",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 25786073
+  },
+  {
+    "laliga_fantasy_id": "2315",
+    "nickname": "Paredes",
+    "name": "Aitor Paredes",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 3164407
+  },
+  {
+    "laliga_fantasy_id": "2424",
+    "nickname": "Carvajal",
+    "name": "Dani Carvajal",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 2753369
+  },
+  {
+    "laliga_fantasy_id": "2470",
+    "nickname": "Foyth",
+    "name": "Juan Foyth",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 2747607
+  },
+  {
+    "laliga_fantasy_id": "2882",
+    "nickname": "J. Boñar",
+    "name": "Javier Boñar",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 684685
+  },
+  {
+    "laliga_fantasy_id": "1434",
+    "nickname": "Samu Costa",
+    "name": "Samuel Almeida Costa",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 927145
+  },
+  {
+    "laliga_fantasy_id": "2040",
+    "nickname": "Jauregizar",
+    "name": "Mikel Jauregizar",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 19528109
+  },
+  {
+    "laliga_fantasy_id": "2362",
+    "nickname": "M. Casadó",
+    "name": "Marc Casadó",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1037719
+  },
+  {
+    "laliga_fantasy_id": "2802",
+    "nickname": "Lucas Beltrán",
+    "name": "Lucas Beltrán",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1032455
+  },
+  {
+    "laliga_fantasy_id": "2935",
+    "nickname": "Wesley",
+    "name": "Wesley Gassova Ribeiro Teixeira",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1176106
+  },
+  {
+    "laliga_fantasy_id": "2419",
+    "nickname": "Aitor Ruibal",
+    "name": "Aitor Ruibal",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1444502
+  },
+  {
+    "laliga_fantasy_id": "2635",
+    "nickname": "Rashford",
+    "name": "Marcus Rashford",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 31439387
+  },
+  {
+    "laliga_fantasy_id": "2718",
+    "nickname": "F. Mastantuono",
+    "name": "Franco Mastantuono",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 3532247
+  },
+  {
+    "laliga_fantasy_id": "988",
+    "nickname": "Sivera",
+    "name": "Antonio Sivera",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 1455890
+  },
+  {
+    "laliga_fantasy_id": "2450",
+    "nickname": "Nianzou",
+    "name": "Tanguy Nianzou",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 686581
+  },
+  {
+    "laliga_fantasy_id": "2698",
+    "nickname": "Pau Navarro",
+    "name": "Pau Navarro",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 710704
+  },
+  {
+    "laliga_fantasy_id": "2857",
+    "nickname": "Salguero",
+    "name": "Antonio Salguero",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 685430
+  },
+  {
+    "laliga_fantasy_id": "2889",
+    "nickname": "Tommy Marqués",
+    "name": "Tomás Marqués",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 684685
+  },
+  {
+    "laliga_fantasy_id": "2926",
+    "nickname": "Boselli",
+    "name": "Sebastián Boselli",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 750095
+  },
+  {
+    "laliga_fantasy_id": "1300",
+    "nickname": "Camavinga",
+    "name": "Eduardo Celmi Camavinga",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 45636017
+  },
+  {
+    "laliga_fantasy_id": "1938",
+    "nickname": "Pol Lozano",
+    "name": "Pol Lozano",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 696717
+  },
+  {
+    "laliga_fantasy_id": "2786",
+    "nickname": "Jordán",
+    "name": "Joan Jordán",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 686744
+  },
+  {
+    "laliga_fantasy_id": "2907",
+    "nickname": "Manuel Ángel",
+    "name": "Manuel Ángel",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 695783
+  },
+  {
+    "laliga_fantasy_id": "2915",
+    "nickname": "Álex Sánchez",
+    "name": "Alejandro Sánchez Mantecón",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 666889
+  },
+  {
+    "laliga_fantasy_id": "1484",
+    "nickname": "Guruzeta",
+    "name": "Gorka Guruzeta",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 2349384
+  },
+  {
+    "laliga_fantasy_id": "2498",
+    "nickname": "Budimir",
+    "name": "Ante Budimir",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 43030844
+  },
+  {
+    "laliga_fantasy_id": "2756",
+    "nickname": "Ramazani",
+    "name": "Largie Ramazani",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1689905
+  },
+  {
+    "laliga_fantasy_id": "2755",
+    "nickname": "Ryan",
+    "name": "Mathew Ryan",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 1326663
+  },
+  {
+    "laliga_fantasy_id": "2427",
+    "nickname": "Alaba",
+    "name": "David Alaba",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 706121
+  },
+  {
+    "laliga_fantasy_id": "2547",
+    "nickname": "H. Rincón",
+    "name": "Hugo Rincón",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 689144
+  },
+  {
+    "laliga_fantasy_id": "2550",
+    "nickname": "Luiz Felipe",
+    "name": "Luiz Felipe Ramos Marchi",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 689036
+  },
+  {
+    "laliga_fantasy_id": "2648",
+    "nickname": "Jofre",
+    "name": "Jofre Torrents",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 686414
+  },
+  {
+    "laliga_fantasy_id": "2863",
+    "nickname": "Panach",
+    "name": "Alejandro Panach Olmo",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 685054
+  },
+  {
+    "laliga_fantasy_id": "2408",
+    "nickname": "Mascarell",
+    "name": "Omar Mascarell",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 691159
+  },
+  {
+    "laliga_fantasy_id": "2511",
+    "nickname": "R. Terrats",
+    "name": "Ramon Terrats",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 690137
+  },
+  {
+    "laliga_fantasy_id": "2548",
+    "nickname": "Riquelme",
+    "name": "Rodrigo Riquelme",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 844447
+  },
+  {
+    "laliga_fantasy_id": "2584",
+    "nickname": "German V.",
+    "name": "Germán Valera",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 42771124
+  },
+  {
+    "laliga_fantasy_id": "2816",
+    "nickname": "A. Martinez",
+    "name": "Antonio Martínez",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 686369
+  },
+  {
+    "laliga_fantasy_id": "1210",
+    "nickname": "Giuliano",
+    "name": "Giuliano Simeone",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 42269286
+  },
+  {
+    "laliga_fantasy_id": "1260",
+    "nickname": "Diego López",
+    "name": "Diego López",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1064810
+  },
+  {
+    "laliga_fantasy_id": "2933",
+    "nickname": "Cepeda",
+    "name": "Lucas Cepeda",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 956078
+  },
+  {
+    "laliga_fantasy_id": "2351",
+    "nickname": "Iñaki Peña",
+    "name": "Iñaki Peña",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 940670
+  },
+  {
+    "laliga_fantasy_id": "265",
+    "nickname": "Zubeldia",
+    "name": "Igor Zubeldia",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 1803235
+  },
+  {
+    "laliga_fantasy_id": "1468",
+    "nickname": "Arnau",
+    "name": "Arnau Martinez",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 2494322
+  },
+  {
+    "laliga_fantasy_id": "2428",
+    "nickname": "Rüdiger",
+    "name": "Antonio Rüdiger",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 23194436
+  },
+  {
+    "laliga_fantasy_id": "2732",
+    "nickname": "Alex Moreno",
+    "name": "Álex Moreno",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 1021284
+  },
+  {
+    "laliga_fantasy_id": "2901",
+    "nickname": "Fontanet",
+    "name": "Joel Fontanet",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 676080
+  },
+  {
+    "laliga_fantasy_id": "2383",
+    "nickname": "Pathé I. Ciss",
+    "name": "Pathé Ciss",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1136403
+  },
+  {
+    "laliga_fantasy_id": "2453",
+    "nickname": "Agoumé",
+    "name": "Lucien Agoumé",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1448030
+  },
+  {
+    "laliga_fantasy_id": "2473",
+    "nickname": "Gueye",
+    "name": "Pape Gueye",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 28724191
+  },
+  {
+    "laliga_fantasy_id": "2484",
+    "nickname": "Hassan",
+    "name": "Haissem Hassan",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1035202
+  },
+  {
+    "laliga_fantasy_id": "2911",
+    "nickname": "Raghouber",
+    "name": "Ugo Raghouber",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1242737
+  },
+  {
+    "laliga_fantasy_id": "2497",
+    "nickname": "Nico Williams",
+    "name": "Nico Williams",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 30669260
+  },
+  {
+    "laliga_fantasy_id": "2768",
+    "nickname": "Lucas Boyé",
+    "name": "Lucas Boyé",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1800364
+  },
+  {
+    "laliga_fantasy_id": "2800",
+    "nickname": "Bryan Gil",
+    "name": "Bryan Gil",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1389011
+  },
+  {
+    "laliga_fantasy_id": "2747",
+    "nickname": "Alberto F.",
+    "name": "Alberto Flores",
+    "team_id": "",
+    "position_id": 1,
+    "market_value": 686393
+  },
+  {
+    "laliga_fantasy_id": "2872",
+    "nickname": "Mikel",
+    "name": "Mikel Serrano",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 683356
+  },
+  {
+    "laliga_fantasy_id": "2852",
+    "nickname": "Egoitz M.l.",
+    "name": "Egoitz Muñoz",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 685430
+  },
+  {
+    "laliga_fantasy_id": "2309",
+    "nickname": "Dani Calvo",
+    "name": "Dani Calvo",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 687524
+  },
+  {
+    "laliga_fantasy_id": "2323",
+    "nickname": "Lenglet",
+    "name": "Clément Lenglet",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 723592
+  },
+  {
+    "laliga_fantasy_id": "2844",
+    "nickname": "David Delgado",
+    "name": "David Delgado",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 686322
+  },
+  {
+    "laliga_fantasy_id": "2776",
+    "nickname": "A. Abqar",
+    "name": "Abdel Abqar",
+    "team_id": "",
+    "position_id": 2,
+    "market_value": 709073
+  },
+  {
+    "laliga_fantasy_id": "2902",
+    "nickname": "Alassane",
+    "name": "Alassane Diatta",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 676080
+  },
+  {
+    "laliga_fantasy_id": "2628",
+    "nickname": "O. Rey",
+    "name": "Oriol Rey",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 687202
+  },
+  {
+    "laliga_fantasy_id": "2607",
+    "nickname": "Ilaix Moriba",
+    "name": "Moriba Kourouma Kourouma",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 796570
+  },
+  {
+    "laliga_fantasy_id": "2078",
+    "nickname": "Hugo Alvarez",
+    "name": "Hugo Álvarez",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 692741
+  },
+  {
+    "laliga_fantasy_id": "1694",
+    "nickname": "Sow",
+    "name": "Djibril Sow",
+    "team_id": "",
+    "position_id": 3,
+    "market_value": 1127636
+  },
+  {
+    "laliga_fantasy_id": "2344",
+    "nickname": "T. Martinez",
+    "name": "Toni Martínez",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1826644
+  },
+  {
+    "laliga_fantasy_id": "886",
+    "nickname": "De Frutos",
+    "name": "Jorge De Frutos",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 42537986
+  },
+  {
+    "laliga_fantasy_id": "2937",
+    "nickname": "Ngonge",
+    "name": "Cyril Ngonge",
+    "team_id": "",
+    "position_id": 4,
+    "market_value": 1542471
+  }
+]

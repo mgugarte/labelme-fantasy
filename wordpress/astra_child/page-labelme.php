@@ -101,7 +101,7 @@ Template Name: Página LabelMe HTML Completo
 <header class="header-modern">
   <div class="header-container">
     <a href="/" class="logo-link">
-      <img src="http://labelme.es/wp-content/uploads/2025/05/labelMe_negro-removebg-preview.png" alt="LabelMe" class="logo-img">
+      <img src="http://labelme.es/wp-content/uploads/2026/02/logo_beta.png" alt="LabelMe" class="logo-img">
     </a>
     
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">

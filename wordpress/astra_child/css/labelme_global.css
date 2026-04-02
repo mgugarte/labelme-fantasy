@@ -144,7 +144,7 @@ button {
 }
 
 .logo-img {
-  height: 36px;
+  height: 70px;
   width: auto;
   transition: opacity 0.2s;
 }
@@ -1118,7 +1118,7 @@ button {
   background: var(--color-bg-white);
   padding: var(--spacing-md);
   position: sticky;
-  top: 72px;
+  top: 102px;
   z-index: 90;
   box-shadow: var(--shadow-sm);
   overflow-x: auto;

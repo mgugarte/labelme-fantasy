@@ -172,7 +172,7 @@ $descripcion_seo = "Estadísticas completas de " . esc_html($jugador->nombre) . 
 <header class="header-modern">
   <div class="header-container">
     <a href="/" class="logo-link">
-      <img src="http://labelme.es/wp-content/uploads/2025/05/labelMe_negro-removebg-preview.png" alt="LabelMe" class="logo-img">
+      <img src="http://labelme.es/wp-content/uploads/2026/02/logo_beta.png" alt="LabelMe" class="logo-img">
     </a>
     
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">
@@ -346,6 +346,15 @@ $equipos_barra = $wpdb->get_results("
     </div>
   </div>
 </section>
+
+<!-- VALORES DE MERCADO POR APP — desactivado temporalmente
+<div class="seccion-info">
+  <h2>💰 Valor de Mercado por App</h2>
+  <div id="valores-mercado-container">
+    <div class="loading-skeleton" style="height: 120px; border-radius: 12px;"></div>
+  </div>
+</div>
+-->
 
 <!-- ANÁLISIS FANTASY (BASADO EN ÚLTIMOS 5 PARTIDOS) -->
 <div class="seccion-info" id="analisis-fantasy-container">
@@ -952,7 +961,70 @@ async function cargarAnalisisFantasy() {
 }
 
 // EJECUTAR AL CARGAR LA PÁGINA
+// ========================================
+// CARGAR VALORES DE MERCADO POR APP — desactivado temporalmente
+// ========================================
+/*
+async function cargarValoresMercado() {
+  const container = document.getElementById('valores-mercado-container');
+  try {
+    const response = await fetch(`/wp-json/labelme/v1/jugador-valores-mercado?player_id=${playerId}`);
+    const datos = await response.json();
+
+    const apps = [
+      { key: 'mister',        nombre: 'Mister',        color: '#e63946', bg: 'linear-gradient(135deg,#fff1f2,#ffe4e6)', border: '#e63946', logo: '⚽' },
+      { key: 'biwenger',      nombre: 'Biwenger',      color: '#1d4ed8', bg: 'linear-gradient(135deg,#eff6ff,#dbeafe)', border: '#3b82f6', logo: '🎯' },
+      { key: 'comunio',       nombre: 'Comunio',       color: '#059669', bg: 'linear-gradient(135deg,#ecfdf5,#d1fae5)', border: '#10b981', logo: '🏆' },
+      { key: 'laliga_fantasy', nombre: 'LaLiga Fantasy', color: '#7c3aed', bg: 'linear-gradient(135deg,#f5f3ff,#ede9fe)', border: '#8b5cf6', logo: '⭐' },
+    ];
+
+    function formatValue(v) {
+      if (!v) return '—';
+      if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+      if (v >= 1000)    return (v / 1000).toFixed(0) + 'K';
+      return v.toString();
+    }
+
+    function formatChange(c) {
+      if (!c) return '';
+      const sign = c > 0 ? '+' : '';
+      const formatted = formatValue(Math.abs(c));
+      const color = c > 0 ? '#10b981' : '#ef4444';
+      const arrow = c > 0 ? '▲' : '▼';
+      return `<span style="font-size:0.75rem;color:${color};font-weight:700;margin-top:0.25rem;display:block;">${arrow} ${sign}${c > 0 ? '' : '-'}${formatted}</span>`;
+    }
+
+    let sinDatos = true;
+    let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;">';
+
+    apps.forEach(app => {
+      const info = datos[app.key];
+      if (info && info.value) sinDatos = false;
+      const valor = info ? formatValue(info.value) : '—';
+      const cambio = info ? formatChange(info.change) : '';
+      html += `
+        <div style="background:${app.bg};padding:1.25rem;border-radius:12px;border-left:4px solid ${app.border};text-align:center;">
+          <div style="font-size:0.75rem;color:#475569;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;">${app.logo} ${app.nombre}</div>
+          <div style="font-size:1.75rem;font-weight:900;color:${app.color};line-height:1.1;">${valor}</div>
+          ${cambio}
+        </div>`;
+    });
+
+    html += '</div>';
+
+    if (sinDatos) {
+      container.innerHTML = '<p style="text-align:center;color:#94a3b8;padding:1rem;">Sin datos de valores de mercado disponibles</p>';
+    } else {
+      container.innerHTML = html;
+    }
+  } catch (e) {
+    container.innerHTML = '<p style="text-align:center;color:#94a3b8;padding:1rem;">No se pudieron cargar los valores de mercado</p>';
+  }
+}
+*/
+
 document.addEventListener('DOMContentLoaded', function() {
+  // cargarValoresMercado(); // desactivado temporalmente
   cargarStatsUltimos5();
   cargarAnalisisFantasy();
   cargarUltimosPartidos();
