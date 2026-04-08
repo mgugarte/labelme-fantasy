@@ -22,8 +22,8 @@ env/
 venv/
 ENV/
 my_fantasy_env/
-pruebas.py
-update_market_values.py
+*pruebas.py
+*update_market_values.py
 # Logs
 *.log
 ejecucion.log
