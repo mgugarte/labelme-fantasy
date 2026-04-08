@@ -5,6 +5,8 @@
 import requests
 import pymysql
 import os
+import unicodedata
+import json as _json_module
 from datetime import date
 from dotenv import load_dotenv
 
@@ -27,8 +29,19 @@ TODAY = date.today()
 # UTILIDADES
 # ============================================================
 
+def _normalize(s):
+    """Lowercase + strip accents for fuzzy matching."""
+    return ''.join(
+        c for c in unicodedata.normalize('NFKD', s.lower().strip())
+        if not unicodedata.combining(c)
+    )
+
 def get_player_id_by_name(name):
     name = name.strip()
+    if not name:
+        return None
+
+    # 1. Exact match
     cursor.execute(
         "SELECT id FROM jugadores_laliga WHERE nombre = %s AND season = '2025' LIMIT 1",
         (name,)
@@ -36,16 +49,41 @@ def get_player_id_by_name(name):
     row = cursor.fetchone()
     if row:
         return row[0]
+
+    # 2. Case-insensitive + accent-insensitive (COLLATE utf8mb4_unicode_ci treats é=e, ñ≈n, etc.)
+    cursor.execute(
+        "SELECT id FROM jugadores_laliga "
+        "WHERE nombre COLLATE utf8mb4_unicode_ci = %s AND season = '2025' LIMIT 1",
+        (name,)
+    )
+    row = cursor.fetchone()
+    if row:
+        return row[0]
+
+    # 3. Apellido (last word) with collation
     parts = name.split()
     if parts:
         apellido = parts[-1]
         cursor.execute(
-            "SELECT id FROM jugadores_laliga WHERE nombre LIKE %s AND season = '2025' LIMIT 1",
+            "SELECT id FROM jugadores_laliga "
+            "WHERE nombre LIKE %s COLLATE utf8mb4_unicode_ci AND season = '2025' LIMIT 1",
             (f'%{apellido}%',)
         )
         row = cursor.fetchone()
         if row:
             return row[0]
+
+    # 4. Python-side normalization: strip accents/diacritics from both sides
+    name_norm = _normalize(name)
+    cursor.execute(
+        "SELECT id, nombre FROM jugadores_laliga WHERE season = '2025' "
+        "AND LOWER(nombre) LIKE %s LIMIT 20",
+        (f'%{name_norm.split()[-1] if name_norm.split() else name_norm}%',)
+    )
+    for row in cursor.fetchall():
+        if _normalize(row[1]) == name_norm:
+            return row[0]
+
     return None
 
 def save_value(player_id, app, value):
@@ -71,65 +109,109 @@ def save_value(player_id, app, value):
 # MISTER FANTASY
 # ============================================================
 
-def login_mister():
+def _mister_session():
+    """Abre sesión en Mister: PHPSESSID anónimo + login JWT + exchange-token.
+    Devuelve una requests.Session lista para usar /ajax/sw/ o None si falla."""
     import base64, json as _json
     session = requests.Session()
-    headers = {
+    session.headers.update({
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'accept': 'application/json',
-        'content-type': 'application/json',
+        'accept': '*/*',
         'origin': 'https://mister.mundodeportivo.com',
-        'referer': 'https://mister.mundodeportivo.com/',
-    }
-    state = requests.utils.quote(base64.b64encode(_json.dumps(
-        {"method": "email", "platform": "web", "userAgent": "Mozilla/5.0"},
-        separators=(',', ':')
-    ).encode()).decode())
+        'referer': 'https://mister.mundodeportivo.com/search',
+        'x-auth': os.getenv('MISTER_XAUTH'),
+        'x-requested-with': 'XMLHttpRequest',
+    })
     try:
+        # Paso 1: obtener PHPSESSID anónimo
+        session.get('https://mister.mundodeportivo.com', timeout=10)
+
+        # Paso 2: login → JWT
+        state = requests.utils.quote(base64.b64encode(_json.dumps(
+            {"method": "email", "platform": "web", "userAgent": "Mozilla/5.0"},
+            separators=(',', ':')
+        ).encode()).decode())
+        session.headers['content-type'] = 'application/json'
         r = session.post(
             f'https://mister.mundodeportivo.com/api2/auth/email?state={state}',
             json={'email': os.getenv('MISTER_EMAIL'), 'password': os.getenv('MISTER_PASSWORD')},
-            headers=headers, timeout=30
+            timeout=30
         )
         token = r.json().get('token')
-        if token:
-            print("  Login Mister OK")
-            return token
-        print(f"  Login Mister fallido: {r.text[:200]}")
-        return None
+        if not token:
+            print(f"  Login Mister fallido: {r.text[:200]}")
+            return None
+
+        # Paso 3: exchange-token → cookie token (JWT corto) + PHPSESSID autenticado
+        session.headers['Authorization'] = f'Bearer {token}'
+        session.post(
+            'https://mister.mundodeportivo.com/api2/auth/external/exchange-token',
+            json={'token': token}, timeout=15
+        )
+        del session.headers['Authorization']
+        session.headers['content-type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+        print("  Login Mister OK")
+        return session
     except Exception as e:
         print(f"  ERROR login Mister: {e}")
         return None
 
 def fetch_mister():
+    """Obtiene valores de mercado de Mister via /ajax/sw/players (POST form).
+    Busca por prefijo, expandiendo a dos letras cuando se alcanza el límite de 50."""
+    import time as _time
+    LIMIT = 50
+    LETTERS = 'abcdefghijklmnopqrstuvwxyz'
+
     print("=== MISTER ===")
-    token = login_mister()
-    if not token:
-        print("  Sin token válido — omitiendo Mister")
+    session = _mister_session()
+    if not session:
+        print("  Sin sesión válida — omitiendo Mister")
         return
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'accept': 'application/json',
-        'Authorization': f'Bearer {token}',
-        'origin': 'https://mister.mundodeportivo.com',
-        'referer': 'https://mister.mundodeportivo.com/',
-    }
+
+    def search(prefix):
+        """Devuelve lista de jugadores para el prefijo dado."""
+        try:
+            r = session.post(
+                'https://mister.mundodeportivo.com/ajax/sw/players',
+                data={'competition_id': '1', 'name': prefix},
+                timeout=20
+            )
+            _time.sleep(0.05)
+            return r.json().get('data', {}).get('players', [])
+        except Exception as e:
+            print(f"  ERROR buscando '{prefix}': {e}")
+            return []
+
+    # Acumular jugadores únicos con expansión automática cuando se alcanza el límite
+    all_players = {}
+    for letra in LETTERS:
+        players = search(letra)
+        if len(players) < LIMIT:
+            for p in players:
+                all_players[p['id']] = p
+        else:
+            # Límite alcanzado: expandir con segunda letra para no perder jugadores
+            for p in players:
+                all_players[p['id']] = p
+            for letra2 in LETTERS:
+                players2 = search(letra + letra2)
+                for p in players2:
+                    all_players[p['id']] = p
+                # Si aún se alcanza el límite con 2 letras, expandir a 3
+                if len(players2) >= LIMIT:
+                    for letra3 in LETTERS:
+                        players3 = search(letra + letra2 + letra3)
+                        for p in players3:
+                            all_players[p['id']] = p
+
+    print(f"  {len(all_players)} jugadores únicos recibidos")
+
     total_saved = 0
     not_found = []
-    try:
-        r = requests.get(
-            'https://mister.mundodeportivo.com/api2/competitions/1/players?limit=600',
-            headers=headers, timeout=30
-        )
-        data = r.json()
-    except Exception as e:
-        print(f"  ERROR: {e}")
-        return
-    players = data.get('items', [])
-    print(f"  {len(players)} jugadores recibidos")
-    for p in players:
+    for p in all_players.values():
         name = p.get('name', '')
-        value = p.get('value', 0)
+        value = p.get('value') or 0
         if not name or not value:
             continue
         player_id = get_player_id_by_name(name)
@@ -138,6 +220,7 @@ def fetch_mister():
             total_saved += 1
         else:
             not_found.append(name)
+
     print(f"  TOTAL guardados: {total_saved}")
     if not_found:
         print(f"  No encontrados ({len(not_found)}): {not_found[:10]}...")
@@ -161,7 +244,10 @@ def fetch_biwenger():
             "https://cf.biwenger.com/api/v2/competitions/la-liga/data?lang=es&score=1",
             headers=BIWENGER_HEADERS, timeout=30
         )
-        data = r.json()
+        try:
+            data = _json_module.loads(r.content.decode('utf-8'))
+        except (UnicodeDecodeError, ValueError):
+            data = _json_module.loads(r.content.decode('latin-1'))
     except Exception as e:
         print(f"  ERROR al obtener datos: {e}")
         return
@@ -207,7 +293,12 @@ def fetch_comunio():
         print(f"  ERROR obteniendo lista: {e}")
         return
 
-    # 2. Scraping de cada perfil para obtener el valor de mercado
+    # 2. API directa de Comunio (sin autenticación, devuelve price por ID)
+    api_headers = {
+        'User-Agent': 'Mozilla/5.0',
+        'Accept': 'application/json',
+        'Accept-Language': 'es-ES',
+    }
     total_saved = 0
     not_found = []
     errors = 0
@@ -215,14 +306,16 @@ def fetch_comunio():
         pid = p['id']
         name = p['value'].strip()
         try:
-            r2 = requests.get(f'https://stats.comunio.es/csprofile/{pid}-', headers=headers, timeout=15)
-            html = r2.content.decode('utf-8', errors='replace')
-            m2 = _re.search(r'"playerData":\{"playerId":\d+,"name":"[^"]+","price":(\d+)', html)
-            if not m2:
+            r2 = requests.get(f'https://api.comunio.es/players/{pid}', headers=api_headers, timeout=15)
+            if r2.status_code != 200:
                 not_found.append(name)
                 continue
-            value = int(m2.group(1))
-            if value <= 0:
+            try:
+                d = _json_module.loads(r2.content.decode('utf-8'))
+            except (UnicodeDecodeError, ValueError):
+                d = _json_module.loads(r2.content.decode('latin-1'))
+            value = d.get('price') or 0
+            if not value or value <= 0:
                 not_found.append(name)
                 continue
             player_id = get_player_id_by_name(name)
@@ -231,7 +324,7 @@ def fetch_comunio():
                 total_saved += 1
             else:
                 not_found.append(name)
-            _time.sleep(0.3)
+            _time.sleep(0.1)
         except Exception as e:
             errors += 1
             if errors <= 3:
@@ -335,7 +428,7 @@ def fetch_laliga_fantasy():
             f"https://api-fantasy.llt-services.com/api/v3/league/{league_id}/market?x-lang=es",
             headers=headers, timeout=30
         )
-        for item in r.json():
+        for item in _json_module.loads(r.content.decode('utf-8')):
             pm = item.get('playerMaster', {})
             mv = item.get('marketValue') or pm.get('marketValue', 0)
             extract_player(pm, mv)
@@ -349,7 +442,7 @@ def fetch_laliga_fantasy():
             f"https://api-fantasy.llt-services.com/api/v4/leagues/{league_id}/teams?x-lang=es",
             headers=headers, timeout=30
         )
-        teams = r.json()
+        teams = _json_module.loads(r.content.decode('utf-8'))
         if not isinstance(teams, list):
             print(f"  ERROR equipos inesperado: {str(teams)[:200]}")
             raise ValueError("Equipos no es una lista")
@@ -362,10 +455,54 @@ def fetch_laliga_fantasy():
                     mv = pm.get('marketValue', 0)
                     extract_player(pm, mv)
 
-        print(f"  Total jugadores únicos: {len(players_found)}")
-
     except Exception as e:
         print(f"  ERROR equipos: {e}")
+
+    # Fuente 3: Iteración de IDs con /api/v3/player/{id}?includeMarketValue=true
+    try:
+        from concurrent.futures import ThreadPoolExecutor, as_completed as _as_completed
+        before = len(players_found)
+        session = requests.Session()
+        session.headers.update(headers)
+
+        def _fetch_player(pid):
+            try:
+                r2 = session.get(
+                    f"https://api-fantasy.llt-services.com/api/v3/player/{pid}?x-lang=es&includeMarketValue=true",
+                    timeout=10
+                )
+                if r2.status_code == 200:
+                    return pid, _json_module.loads(r2.content.decode('utf-8'))
+            except Exception:
+                pass
+            return pid, None
+
+        with ThreadPoolExecutor(max_workers=15) as ex:
+            futures = {ex.submit(_fetch_player, pid): pid for pid in range(1, 3001)}
+            for f in _as_completed(futures):
+                pid, data = f.result()
+                if not data:
+                    continue
+                mv = data.get('marketValue', 0)
+                if not mv:
+                    continue
+                team = data.get('team', {})
+                tid = str(team.get('id', '')) if isinstance(team, dict) else ''
+                players_found[str(pid)] = {
+                    'laliga_fantasy_id': str(pid),
+                    'nickname': data.get('nickname', ''),
+                    'name': data.get('name', ''),
+                    'team_id': tid,
+                    'position_id': str(data.get('positionId', '')),
+                    'market_value': mv,
+                }
+
+        added = len(players_found) - before
+        print(f"  Fuente3 (iteracion IDs 1-3000): +{added} jugadores nuevos")
+    except Exception as e:
+        print(f"  ERROR fuente3: {e}")
+
+    print(f"  Total jugadores únicos: {len(players_found)}")
 
     # Guardar en BD
     total_saved = 0

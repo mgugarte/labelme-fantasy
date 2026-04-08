@@ -347,14 +347,12 @@ $equipos_barra = $wpdb->get_results("
   </div>
 </section>
 
-<!-- VALORES DE MERCADO POR APP — desactivado temporalmente
 <div class="seccion-info">
   <h2>💰 Valor de Mercado por App</h2>
   <div id="valores-mercado-container">
     <div class="loading-skeleton" style="height: 120px; border-radius: 12px;"></div>
   </div>
 </div>
--->
 
 <!-- ANÁLISIS FANTASY (BASADO EN ÚLTIMOS 5 PARTIDOS) -->
 <div class="seccion-info" id="analisis-fantasy-container">
@@ -962,20 +960,20 @@ async function cargarAnalisisFantasy() {
 
 // EJECUTAR AL CARGAR LA PÁGINA
 // ========================================
-// CARGAR VALORES DE MERCADO POR APP — desactivado temporalmente
+// CARGAR VALORES DE MERCADO POR APP
 // ========================================
-/*
 async function cargarValoresMercado() {
   const container = document.getElementById('valores-mercado-container');
+  const themeUrl = '<?php echo get_stylesheet_directory_uri(); ?>';
   try {
     const response = await fetch(`/wp-json/labelme/v1/jugador-valores-mercado?player_id=${playerId}`);
     const datos = await response.json();
 
     const apps = [
-      { key: 'mister',        nombre: 'Mister',        color: '#e63946', bg: 'linear-gradient(135deg,#fff1f2,#ffe4e6)', border: '#e63946', logo: '⚽' },
-      { key: 'biwenger',      nombre: 'Biwenger',      color: '#1d4ed8', bg: 'linear-gradient(135deg,#eff6ff,#dbeafe)', border: '#3b82f6', logo: '🎯' },
-      { key: 'comunio',       nombre: 'Comunio',       color: '#059669', bg: 'linear-gradient(135deg,#ecfdf5,#d1fae5)', border: '#10b981', logo: '🏆' },
-      { key: 'laliga_fantasy', nombre: 'LaLiga Fantasy', color: '#7c3aed', bg: 'linear-gradient(135deg,#f5f3ff,#ede9fe)', border: '#8b5cf6', logo: '⭐' },
+      { key: 'mister',        nombre: 'Mister',        color: '#c9002e', bg: 'linear-gradient(135deg,#fff1f2,#ffe4e6)', border: '#c9002e', logo: `${themeUrl}/img/apps/mister.webp` },
+      { key: 'biwenger',      nombre: 'Biwenger',      color: '#1b3a6b', bg: 'linear-gradient(135deg,#eff6ff,#dbeafe)', border: '#1b3a6b', logo: `${themeUrl}/img/apps/biwenger.webp` },
+      { key: 'comunio',       nombre: 'Comunio',       color: '#ff6b00', bg: 'linear-gradient(135deg,#fff7ed,#ffedd5)', border: '#ff6b00', logo: `${themeUrl}/img/apps/comunio.webp` },
+      { key: 'laliga_fantasy', nombre: 'LaLiga Fantasy', color: '#ee4023', bg: 'linear-gradient(135deg,#fff5f5,#fee2e2)', border: '#ee4023', logo: `${themeUrl}/img/apps/laliga_fantasy.webp` },
     ];
 
     function formatValue(v) {
@@ -1004,7 +1002,10 @@ async function cargarValoresMercado() {
       const cambio = info ? formatChange(info.change) : '';
       html += `
         <div style="background:${app.bg};padding:1.25rem;border-radius:12px;border-left:4px solid ${app.border};text-align:center;">
-          <div style="font-size:0.75rem;color:#475569;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;">${app.logo} ${app.nombre}</div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:0.4rem;margin-bottom:0.5rem;">
+            <img src="${app.logo}" alt="${app.nombre}" style="width:22px;height:22px;object-fit:contain;border-radius:4px;">
+            <span style="font-size:0.75rem;color:#475569;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">${app.nombre}</span>
+          </div>
           <div style="font-size:1.75rem;font-weight:900;color:${app.color};line-height:1.1;">${valor}</div>
           ${cambio}
         </div>`;
@@ -1021,10 +1022,9 @@ async function cargarValoresMercado() {
     container.innerHTML = '<p style="text-align:center;color:#94a3b8;padding:1rem;">No se pudieron cargar los valores de mercado</p>';
   }
 }
-*/
 
 document.addEventListener('DOMContentLoaded', function() {
-  // cargarValoresMercado(); // desactivado temporalmente
+  cargarValoresMercado();
   cargarStatsUltimos5();
   cargarAnalisisFantasy();
   cargarUltimosPartidos();

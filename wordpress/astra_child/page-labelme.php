@@ -477,7 +477,25 @@ foreach ($resultados as $fila) {
 
     sugerencias.addEventListener('click', (ev) => {
       const s = ev.target.closest('.sugerencia-item');
-      if (s) window.location.href = s.dataset.url;
+
+      if (s) {
+        const nombre = s.querySelector('strong').textContent.trim();
+
+        // añadir jugador a la lista
+        jugadoresSeleccionados.add(nombre);
+
+        // limpiar buscador
+        buscador.value = '';
+
+        // ocultar sugerencias
+        sugerencias.style.display = 'none';
+
+        // aplicar filtros
+        aplicarFiltros();
+
+        // actualizar contador especial
+        actualizarListaSeleccionados();
+      }
     });
 
     document.addEventListener('click', (ev) => {
@@ -495,9 +513,14 @@ const filtroEstado = document.getElementById('filtroEstado');
 const filtroRecomendacion = document.getElementById('filtroRecomendacion');
 const filtroRating = document.getElementById('filtroRating');
 const filtroTitular = document.getElementById('filtroTitular');
+// ========================================
+// LISTA DE JUGADORES SELECCIONADOS
+// ========================================
+let jugadoresSeleccionados = new Set();
 
 function aplicarFiltros() {
   const filas = tabla.querySelectorAll('tbody tr');
+  const textoBusqueda = buscador.value.toLowerCase().trim();
   let visibles = 0;
 
   filas.forEach(fila => {
@@ -505,7 +528,8 @@ function aplicarFiltros() {
     const posicion = fila.cells[2].textContent.trim();
     const rating = parseFloat(fila.cells[4].textContent) || 0;
     const titular = parseFloat(fila.cells[9].textContent) || 0;
-    const recomendacion = parseFloat(fila.cells[11].dataset.sort) || 0;
+    const recomendacion =
+      parseFloat(fila.cells[11].getAttribute('data-sort')) || 0;
     const estadoTexto = fila.cells[12].textContent.trim();
 
     // Determinar estado según el badge
@@ -519,8 +543,19 @@ function aplicarFiltros() {
     }
 
     let mostrar = true;
+  // Filtro por lista de jugadores seleccionados
+    if (jugadoresSeleccionados.size > 0) {
+      const nombreJugador = fila.cells[0].textContent.trim();
 
-    if (filtroEquipo.value && !equipo.includes(filtroEquipo.value)) mostrar = false;
+      if (!jugadoresSeleccionados.has(nombreJugador)) {
+        mostrar = false;
+      }
+    }
+
+    if (
+      filtroEquipo.value &&
+      equipo.toLowerCase().trim() !== filtroEquipo.value.toLowerCase().trim()
+    ) mostrar = false;
     if (filtroPosicion.value && posicion !== filtroPosicion.value) mostrar = false;
     if (filtroEstado.value && estado !== filtroEstado.value) mostrar = false;
 
@@ -552,10 +587,63 @@ function crearContador() {
   return contador;
 }
 
-[filtroEquipo, filtroPosicion, filtroEstado, filtroRecomendacion, filtroRating, filtroTitular].forEach(filtro => {
-  filtro.addEventListener('change', aplicarFiltros);
-  if (filtro.type === 'number') filtro.addEventListener('input', aplicarFiltros);
-});
+function actualizarListaSeleccionados() {
+  let contenedor = document.getElementById('jugadoresSeleccionados');
+
+  if (!contenedor) {
+    contenedor = document.createElement('div');
+    contenedor.id = 'jugadoresSeleccionados';
+    contenedor.style.cssText =
+      'max-width:1200px;margin:1rem auto;padding:1rem;background:#e0f2fe;border-radius:8px;font-weight:600;';
+    
+    tabla.parentNode.insertBefore(contenedor, tabla);
+  }
+
+  if (jugadoresSeleccionados.size === 0) {
+    contenedor.textContent = '';
+    return;
+  }
+
+  contenedor.innerHTML =
+    'Jugadores seleccionados: ' +
+    Array.from(jugadoresSeleccionados)
+      .map(nombre => `
+        <span style="
+          display:inline-block;
+          margin:4px;
+          padding:6px 10px;
+          background:#3b82f6;
+          color:white;
+          border-radius:6px;
+          cursor:pointer;
+        " data-nombre="${nombre}">
+          ${nombre} ✕
+        </span>
+      `)
+      .join('');
+
+  contenedor.querySelectorAll('span').forEach(span => {
+    span.addEventListener('click', () => {
+      jugadoresSeleccionados.delete(span.dataset.nombre);
+      aplicarFiltros();
+      actualizarListaSeleccionados();
+    });
+  });
+}
+
+// ========================================
+// EVENTOS DE FILTROS
+// ========================================
+
+// Select2 usa jQuery events
+$('#filtroEquipo').on('change', aplicarFiltros);
+$('#filtroPosicion').on('change', aplicarFiltros);
+$('#filtroEstado').on('change', aplicarFiltros);
+$('#filtroRecomendacion').on('change', aplicarFiltros);
+
+// Inputs numéricos
+filtroRating.addEventListener('input', aplicarFiltros);
+filtroTitular.addEventListener('input', aplicarFiltros);
 
 // Inicializar contador
 aplicarFiltros();
